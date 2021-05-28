@@ -1,6 +1,7 @@
 'use strict'
 
 const path = require('path')
+const { getThemeVariables } = require('ant-design-vue/dist/theme')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -32,6 +33,16 @@ module.exports = {
         pathRewrite: {
           '^/auth': 'auth'
         }
+      }
+    }
+  },
+  css: {
+    loaderOptions: {
+      less: {
+        modifyVars: getThemeVariables({
+          dark: true
+        }),
+        javascriptEnabled: true
       }
     }
   },
