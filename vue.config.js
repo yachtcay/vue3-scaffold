@@ -1,7 +1,7 @@
 'use strict'
 
 const path = require('path')
-const { getThemeVariables } = require('ant-design-vue/dist/theme')
+const { getThemeVariables } = require('./theme/index')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -40,7 +40,7 @@ module.exports = {
     loaderOptions: {
       less: {
         modifyVars: getThemeVariables({
-          dark: true
+          deepBlue: true
         }),
         javascriptEnabled: true
       }
