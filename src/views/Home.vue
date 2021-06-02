@@ -56,11 +56,22 @@
       </a-sub-menu>
     </a-menu>
   </div>
+  <!-- -->
+  <div style="padding: 20px;">
+    <a-button type="primary">Primary</a-button><br><br>
+    <a-button>Default</a-button><br><br>
+    <a-button type="dashed">Dashed</a-button><br><br>
+    <a-button type="danger">Danger</a-button><br><br>
+    <a-config-provider :auto-insert-space-in-button="false"><br><br>
+      <a-button type="primary">按钮</a-button>
+    </a-config-provider>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Home',
-  components: {}
+  components: {
+  }
 }
 </script>

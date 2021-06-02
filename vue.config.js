@@ -1,7 +1,6 @@
 'use strict'
 
 const path = require('path')
-const { getThemeVariables } = require('./theme/index')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -39,9 +38,6 @@ module.exports = {
   css: {
     loaderOptions: {
       less: {
-        modifyVars: getThemeVariables({
-          deepBlue: true
-        }),
         javascriptEnabled: true
       }
     }

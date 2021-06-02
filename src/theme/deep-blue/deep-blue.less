@@ -1,0 +1,34 @@
+/**
+  * deep blue theme
+  * @author yhuan
+  **/
+
+@import '~ant-design-vue/lib/style/color/colorPalette.less';
+
+// customize
+@customize-body-background: #031028;
+@customize-theme-color: #08b8f0;
+@customize-border-color: #1890ff;
+
+// colors
+@primary-color: @customize-theme-color;
+@disabled-color: @customize-theme-color;
+@disabled-bg: rgba(204, 204, 204, 0.3);
+@body-background: @customize-body-background;
+@component-background: @customize-body-background;
+@text-color: @customize-theme-color;
+@border-color-base: @customize-border-color;
+
+// buttons
+@btn-primary-bg: rgba(24, 144, 255, 0.6);
+.ant-btn-primary {
+  border-color: @customize-border-color;
+}
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+  border-color: #1890ff;
+  background: rgba(24, 144, 255, 0.8);
+  color: #fff;
+}
+
+@btn-default-color: @text-color;
+@btn-default-bg: transparent;
