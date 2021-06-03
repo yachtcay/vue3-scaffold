@@ -7,17 +7,30 @@
 
 // customize
 @customize-body-background: #031028;
-@customize-theme-color: #08b8f0;
-@customize-border-color: #1890ff;
+@customize-primary-text-color: #42ccfa;
+@customize-text-color: #00a5da;
+@customize-border-color: #00a8de;
+@customize-hover-theme-color: rgba(54, 153, 229, 0.3);
 
 // colors
-@primary-color: @customize-theme-color;
-@disabled-color: @customize-theme-color;
-@disabled-bg: rgba(204, 204, 204, 0.3);
+@primary-color: @customize-primary-text-color;
+@background-color-base: transparent;
+@disabled-color: rgba(204, 204, 204, 0.6);
+@disabled-bg: @background-color-base;
 @body-background: @customize-body-background;
 @component-background: @customize-body-background;
-@text-color: @customize-theme-color;
+@text-color: @customize-text-color;
+@text-color-secondary: fade(@customize-text-color, 75%);
+@text-color-secondary-dark: fade(@customize-text-color, 75%);
+@text-color-dark: @customize-text-color;
 @border-color-base: @customize-border-color;
+@border-color-split: @customize-border-color;
+@heading-color: @customize-border-color;
+@item-hover-bg: rgba(81, 141, 252, 0.651);
+@item-active-bg: @customize-hover-theme-color;
+
+// shadow
+@shadow-color: rgba(24,144,255, 0.15);
 
 // buttons
 @btn-primary-bg: rgba(24, 144, 255, 0.6);
@@ -32,3 +45,86 @@
 
 @btn-default-color: @text-color;
 @btn-default-bg: transparent;
+
+// divider
+@divider-color: @customize-border-color;
+
+// layout
+@layout-body-background: @customize-body-background;
+@layout-header-background: @customize-body-background;
+@layout-footer-background: @customize-body-background;
+@layout-sider-background: @customize-body-background;
+@layout-trigger-color: @customize-primary-text-color;
+@layout-trigger-background: @customize-body-background;
+
+@layout-sider-background-light: @customize-body-background;
+@layout-trigger-color-light: @customize-primary-text-color;
+@layout-trigger-background-light: @customize-body-background;
+
+// Breadcrumb
+@dropdown-menu-bg: @customize-body-background;
+@dropdown-menu-submenu-disabled-bg: @disabled-bg;
+
+.@{dropdown-prefix-cls} {
+  &-menu {
+    &-item,
+    &-submenu-title {
+      > a {
+        &:hover {
+          color: #7fe2fc;
+        }
+      }
+
+      &-disabled {
+        color: rgba(204, 204, 204, 0.3);;
+
+        &:hover {
+          color: rgba(204, 204, 204, 0.3);;
+        }
+      }
+    }
+  }
+}
+
+// menu
+@menu-dark-color: @text-color-secondary;
+@menu-dark-bg: @layout-header-background;
+@menu-dark-arrow-color: @customize-text-color;
+@menu-dark-submenu-bg: #000c17;
+@menu-dark-highlight-color: @customize-text-color;
+@menu-dark-item-active-bg: @customize-hover-theme-color;
+@menu-dark-selected-item-icon-color: @customize-text-color;
+@menu-dark-selected-item-text-color: @customize-text-color;
+@menu-dark-item-hover-bg: transparent;
+
+// Pagination
+@pagination-item-disabled-color-active: @disabled-color;
+
+// Steps
+@steps-nav-arrow-color: fade(@customize-body-background, 25%);
+@process-icon-color: rgba(24, 144, 255, 0.6);
+
+// input
+@input-placeholder-color: hsv(0, 0, 60%);
+@input-addon-bg: transparent;
+
+// Select
+@select-multiple-item-disabled-color: @disabled-color;
+@select-item-active-bg: @item-active-bg;
+
+.@{select-prefix-cls} {
+  &-item {
+    &-option {
+      &-selected:not(&-disabled) {
+        color: #fff;
+        background-color: rgba(24, 144, 255, 0.8);
+      }
+    }
+  }
+}
+
+// Cascader
+@cascader-item-selected-bg: @item-active-bg;
+
+// Checkbox
+@checkbox-check-color: transparent;
