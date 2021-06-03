@@ -15,16 +15,18 @@
 // colors
 @primary-color: @customize-primary-text-color;
 @background-color-base: transparent;
-@disabled-color: rgba(204, 204, 204, 0.6);
+@disabled-color: rgba(204, 204, 204, 0.4);
 @disabled-bg: @background-color-base;
 @body-background: @customize-body-background;
 @component-background: @customize-body-background;
 @text-color: @customize-text-color;
+@text-color-inverse: #fff;
 @text-color-secondary: fade(@customize-text-color, 75%);
 @text-color-secondary-dark: fade(@customize-text-color, 75%);
 @text-color-dark: @customize-text-color;
 @border-color-base: @customize-border-color;
 @border-color-split: @customize-border-color;
+@border-color-inverse: @customize-border-color;
 @heading-color: @customize-border-color;
 @item-hover-bg: rgba(81, 141, 252, 0.651);
 @item-active-bg: @customize-hover-theme-color;
@@ -126,5 +128,48 @@
 // Cascader
 @cascader-item-selected-bg: @item-active-bg;
 
-// Checkbox
-@checkbox-check-color: transparent;
+// Checkbox - 默认样式是个 less 函数，所以只能硬写样式
+@checkbox-check-bg: transparent;
+@checkbox-check-color: @customize-primary-text-color;
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: transparent;
+}
+
+.ant-checkbox-disabled .ant-checkbox-inner {
+  background-color: @disabled-color;
+}
+
+// Calendar
+.ant-calendar-selected-day .ant-calendar-date {
+  background: @item-hover-bg;
+  color: #fff;
+}
+
+// Calendar-month
+.ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month {
+  background: @item-hover-bg;
+}
+
+.ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month:hover {
+  background: @item-hover-bg;
+}
+
+// Calendar-range
+.ant-calendar-range .ant-calendar-selected-start-date .ant-calendar-date, .ant-calendar-range .ant-calendar-selected-end-date .ant-calendar-date {
+  background: @item-hover-bg;
+}
+
+// Calendar-week
+.ant-calendar-week-number .ant-calendar-body tr.ant-calendar-active-week {
+  background: @customize-hover-theme-color;
+}
+
+.ant-calendar-week-number .ant-calendar-body tr:hover {
+  background: @customize-hover-theme-color;
+}
+
+// Calendar-picker
+.ant-calendar-picker-icon {
+  color: @customize-primary-text-color;
+}

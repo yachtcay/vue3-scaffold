@@ -1,14 +1,7 @@
 <template>
-  <a-checkbox v-model:checked="checked">Checkbox</a-checkbox>
+  <a-button type="primary">Primary</a-button>
 </template>
 <script>
-import { defineComponent, ref } from 'vue'
-
-export default defineComponent({
-  setup() {
-    return {
-      checked: ref(false)
-    }
-  }
-})
+export default {
+}
 </script>
