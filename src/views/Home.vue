@@ -1,7 +1,5 @@
 <template>
-  <a-button type="primary">主要</a-button>
+  <div>
+    <a-button type="primary">Primary</a-button>
+  </div>
 </template>
-<script>
-export default {
-}
-</script>

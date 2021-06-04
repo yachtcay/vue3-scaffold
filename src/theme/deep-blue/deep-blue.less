@@ -11,7 +11,6 @@
 @customize-text-color: #00a5da;
 @customize-border-color: #00a8de;
 @customize-hover-theme-color: rgba(54, 153, 229, 0.3);
-// tmp
 @customize-hover-bg-color: rgba(24, 144, 255, 0.8);
 @customize-hover-text-color: #fff;
 @customize-active-bg-color: rgba(24, 144, 255, 0.8);
@@ -35,8 +34,8 @@
 @border-color-split: @customize-border-color;
 @border-color-inverse: @customize-border-color;
 @heading-color: @customize-border-color;
-@item-hover-bg: rgba(81, 141, 252, 0.651);
-@item-active-bg: @customize-hover-theme-color;
+@item-hover-bg: @customize-hover-bg-color;
+@item-active-bg: @customize-active-bg-color;
 
 // shadow
 @shadow-color: rgba(24,144,255, 0.15);
@@ -48,8 +47,8 @@
 }
 .ant-btn-primary:hover, .ant-btn-primary:focus {
   border-color: #1890ff;
-  background: rgba(24, 144, 255, 0.8);
-  color: #fff;
+  background: @customize-hover-bg-color;
+  color: @customize-hover-text-color;
 }
 
 @btn-default-color: @text-color;
@@ -126,7 +125,7 @@
     &-option {
       &-selected:not(&-disabled) {
         color: #fff;
-        background-color: rgba(24, 144, 255, 0.8);
+        background-color: @customize-active-bg-color;
       }
     }
   }
@@ -197,9 +196,9 @@
 }
 
 // Radio buttons
-@radio-button-checked-bg: rgba(24, 144, 255, 0.8);
+@radio-button-checked-bg: @customize-active-bg-color;
 @radio-dot-color: #fff;
-@radio-disabled-button-checked-bg: rgba(24, 144, 255, 0.8);
+@radio-disabled-button-checked-bg: @customize-active-bg-color;
 @radio-disabled-button-checked-color: rgba(204, 204, 204, 0.8);
 
 // radio
@@ -231,13 +230,13 @@
 // radio-group
 .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
   color: #fff;
-  background: rgba(24, 144, 255, 0.8);
+  background: @customize-active-bg-color;
   border-color: @border-color-base;
 }
 
 .ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
   color: #fff;
-  background: rgba(24, 144, 255, 0.8);;
+  background: @customize-active-bg-color;
   border-color: @border-color-base;
 }
 
@@ -258,8 +257,8 @@
 }
 
 // Tree
-@tree-node-selected-bg: rgba(24, 144, 255, 0.8);
-@tree-directory-selected-bg: rgba(24, 144, 255, 0.8);
+@tree-node-selected-bg: @customize-active-bg-color;
+@tree-directory-selected-bg: @customize-active-bg-color;
 
 .ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected {
   color: #fff;
@@ -267,7 +266,7 @@
 
 // Tree select
 .ant-select-tree li .ant-select-tree-node-content-wrapper.ant-select-tree-node-selected {
-  background: rgba(24, 144, 255, 0.8);
+  background: @customize-active-bg-color;
   color: #fff;
 }
 
@@ -282,4 +281,42 @@
 // Tree check
 .ant-tree-checkbox-checked .ant-tree-checkbox-inner {
   background-color: transparent;
+}
+
+// Upload
+.ant-upload-list-item:hover .ant-upload-list-item-info {
+  color: #fff;
+}
+
+.ant-upload-list-item:hover .ant-upload-list-item-info .anticon.anticon-paper-clip {
+  color: #fff;
+}
+
+.ant-upload-list-item:hover .ant-upload-list-item-info .anticon.anticon-delete {
+  color: #fff;
+}
+
+// Avatar
+@avatar-bg: @customize-active-bg-color;
+@avatar-color: @customize-active-text-color;
+
+// Calendar
+.ant-fullcalendar-fullscreen .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-month, .ant-fullcalendar-fullscreen .ant-fullcalendar-selected-day .ant-fullcalendar-date {
+  background: @customize-active-bg-color;
+}
+
+.ant-fullcalendar-fullscreen .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-value, .ant-fullcalendar-fullscreen .ant-fullcalendar-selected-day .ant-fullcalendar-value {
+  color: @customize-active-text-color;
+}
+
+.ant-fullcalendar-fullscreen .ant-fullcalendar-month:hover, .ant-fullcalendar-fullscreen .ant-fullcalendar-date:hover .ant-fullcalendar-value {
+  color: @customize-hover-text-color;
+}
+
+.ant-fullcalendar-selected-day .ant-fullcalendar-value, .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-value {
+  color: #fff;
+}
+
+.ant-fullcalendar-value:hover {
+  color: #fff;
 }
