@@ -38,7 +38,7 @@
 @item-active-bg: @customize-active-bg-color;
 
 // shadow
-@shadow-color: rgba(24,144,255, 0.15);
+@shadow-color: rgba(24,144,255, 0.6);
 
 // buttons
 @btn-primary-bg: rgba(24, 144, 255, 0.6);
@@ -107,6 +107,12 @@
 @menu-dark-item-hover-bg: transparent;
 
 // Pagination
+@pagination-item-bg-active: @customize-active-bg-color;
+
+.ant-pagination-item-active a {
+  color: @customize-active-text-color;
+}
+
 @pagination-item-disabled-color-active: @disabled-color;
 
 // Steps
@@ -321,3 +327,33 @@
 .ant-fullcalendar-value:hover {
   color: #fff;
 }
+
+// Card
+@card-hover-border: rgba(0,168,222, 1);
+@card-shadow: 0 2px 8px rgba(0,168,222, 1);
+
+// Descriptions
+@descriptions-bg: @customize-active-bg-color;
+
+.ant-descriptions-bordered .ant-descriptions-item-label {
+  color: #fff;
+}
+
+// Table
+@table-row-hover-bg: @customize-hover-theme-color;
+@table-header-bg: @customize-active-bg-color;
+@table-header-color: #fff;
+@table-footer-bg: @customize-active-bg-color;
+@table-footer-color: #fff;
+@table-selected-row-bg: @customize-hover-theme-color;
+@table-selected-row-color: @customize-active-text-color;
+@table-expanded-row-bg: @customize-hover-theme-color;
+@table-header-icon-color: #fff;
+@table-header-sort-bg: @customize-hover-theme-color;
+@table-body-sort-bg: @customize-hover-theme-color;
+
+// Progress
+@progress-remaining-color: rgba(24, 144, 255, 0.2);
+
+// Skeleton
+@skeleton-color: @customize-hover-theme-color;
