@@ -11,10 +11,16 @@
 @customize-text-color: #00a5da;
 @customize-border-color: #00a8de;
 @customize-hover-theme-color: rgba(54, 153, 229, 0.3);
+// tmp
+@customize-hover-bg-color: rgba(24, 144, 255, 0.8);
+@customize-hover-text-color: #fff;
+@customize-active-bg-color: rgba(24, 144, 255, 0.8);
+@customize-active-text-color: #fff;
 
 // colors
 @primary-color: @customize-primary-text-color;
 @background-color-base: transparent;
+@background-color-light: transparent;
 @disabled-color: rgba(204, 204, 204, 0.4);
 @disabled-bg: @background-color-base;
 @body-background: @customize-body-background;
@@ -24,6 +30,7 @@
 @text-color-secondary: fade(@customize-text-color, 75%);
 @text-color-secondary-dark: fade(@customize-text-color, 75%);
 @text-color-dark: @customize-text-color;
+@icon-color-hover: @customize-text-color;
 @border-color-base: @customize-border-color;
 @border-color-split: @customize-border-color;
 @border-color-inverse: @customize-border-color;
@@ -146,6 +153,11 @@
   color: #fff;
 }
 
+.ant-calendar-footer-extra.ant-calendar-range-quick-selector .ant-tag-blue {
+  background: transparent;
+  border-color: @customize-border-color;
+}
+
 // Calendar-month
 .ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month {
   background: @item-hover-bg;
@@ -172,4 +184,102 @@
 // Calendar-picker
 .ant-calendar-picker-icon {
   color: @customize-primary-text-color;
+}
+
+// Tag
+.ant-tag-checkable-checked {
+  background-color: @item-hover-bg;
+}
+
+// Mentions
+.ant-mentions > textarea {
+  background: transparent;
+}
+
+// Radio buttons
+@radio-button-checked-bg: rgba(24, 144, 255, 0.8);
+@radio-dot-color: #fff;
+@radio-disabled-button-checked-bg: rgba(24, 144, 255, 0.8);
+@radio-disabled-button-checked-color: rgba(204, 204, 204, 0.8);
+
+// radio
+.ant-radio-inner::after {
+  background-color: @customize-primary-text-color;
+}
+
+.ant-radio-checked .ant-radio-inner {
+  border-color: @customize-primary-text-color;
+}
+
+.ant-radio-wrapper:hover .ant-radio, .ant-radio:hover .ant-radio-inner, .ant-radio-input:focus + .ant-radio-inner {
+  border-color: @customize-primary-text-color;
+}
+
+// radio-button
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  border-color: @border-color-base;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):first-child {
+  border-color: @border-color-base;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+  background-color: @border-color-base;
+}
+
+// radio-group
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  color: #fff;
+  background: rgba(24, 144, 255, 0.8);
+  border-color: @border-color-base;
+}
+
+.ant-radio-group-solid .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  color: #fff;
+  background: rgba(24, 144, 255, 0.8);;
+  border-color: @border-color-base;
+}
+
+// Select
+.ant-select-arrow {
+  color: @customize-primary-text-color;
+}
+
+// Slider - track - 已选的 rail - 未选的
+@slider-rail-background-color: @disabled-color;
+@slider-track-background-color: @customize-text-color;
+@slider-rail-background-color-hover: @customize-text-color;
+@slider-track-background-color-hover: @customize-text-color;
+
+// Time picker
+.ant-time-picker-icon .ant-time-picker-clock-icon, .ant-time-picker-clear .ant-time-picker-clock-icon {
+  color: @customize-primary-text-color;
+}
+
+// Tree
+@tree-node-selected-bg: rgba(24, 144, 255, 0.8);
+@tree-directory-selected-bg: rgba(24, 144, 255, 0.8);
+
+.ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected {
+  color: #fff;
+}
+
+// Tree select
+.ant-select-tree li .ant-select-tree-node-content-wrapper.ant-select-tree-node-selected {
+  background: rgba(24, 144, 255, 0.8);
+  color: #fff;
+}
+
+.ant-select-tree li .ant-select-tree-node-content-wrapper:hover {
+  color: #fff;
+}
+
+.ant-select-tree-checkbox-checked .ant-select-tree-checkbox-inner {
+  background-color: transparent;
+}
+
+// Tree check
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner {
+  background-color: transparent;
 }
