@@ -1,5 +1,5 @@
 # vue3-scaffold
-hello scaffold
+按照个人喜欢搭建的一套基于 Vue3 AntdV 的前端脚手架
 
 # TODO
 ## 布局
