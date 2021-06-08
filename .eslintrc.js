@@ -23,6 +23,7 @@ module.exports = {
       'before': false,
       'after': true
     }],
-    'comma-style': [2, 'last']
+    'comma-style': [2, 'last'],
+    "import/extensions": "off"
   }
 }
