@@ -1,12 +1,12 @@
 // 引入 antd
 import Antd from 'ant-design-vue'
 // 默认主题
-// import './theme/default/index.less'
+import './theme/default/index.less'
 // 自定义深蓝色主题
-import './theme/deep-blue/index.less'
+// import './theme/deep-blue/index.less'
 
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from './App'
 import router from './router'
 import store from './store'
 
