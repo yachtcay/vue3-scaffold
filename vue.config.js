@@ -10,12 +10,12 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: true, //process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
     open: true,
     overlay: {
-      warnings: false,
+      warnings: true,
       errors: true
     },
     proxy: {
@@ -41,6 +41,9 @@ module.exports = {
         javascriptEnabled: true
       }
     }
+  },
+  configureWebpack: {
+    devtool: 'source-map'
   },
   chainWebpack(config) {
     config
