@@ -1,5 +1,5 @@
 # vue3-scaffold
-按照个人喜欢搭建的一套基于 Vue3 AntdV 的前端脚手架
+按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架，布局能力参照 Ant Design Pro 实现
 
 # TODO
 ## 布局
