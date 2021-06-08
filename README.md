@@ -1,7 +1,9 @@
 # vue3-scaffold
-按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架，布局能力参照 Ant Design Pro 实现
+按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架
 
 # TODO
+布局能力参照 Ant Design Pro 实现
+
 ## 布局
 - [x] 自定义深蓝色主题
 - [ ] 可配置 Side Menu Layout
