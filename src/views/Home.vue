@@ -1,3 +1,11 @@
 <template>
-  <a-button type="primary">Primary</a-button>
+  hello
 </template>
+
+<script>
+export default {
+  name: 'Home',
+  components: {
+  }
+}
+</script>
