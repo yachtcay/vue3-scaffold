@@ -1,6 +1,18 @@
 # vue3-scaffold
 按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架，不定期更新
 
+# 后端数据响应体
+和后端的兄弟沟通后端数据响应结构体示例
+
+```js
+{
+  code: 20000,  // 自定义的业务码
+  data: [],     // 响应的数据，可以是 Array Object String Number Boolean
+  message: '',  // 响应数据的提示信息
+  success: true // 当前业务请求是否成功
+}
+```
+
 # TODO
 布局能力参照 Ant Design Pro 实现
 
