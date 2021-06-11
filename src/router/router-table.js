@@ -1,14 +1,26 @@
-// 基本路由
-const base = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/views/Home')
-  },
+import MainLayout from '@/layouts/MainLayout'
+
+// feature
+const feature = [
   {
     path: '/404',
     name: 'NotFound',
     component: () => import('@/views/features/404')
+  }
+]
+
+// 基本路由
+const base = [
+  {
+    path: '/',
+    component: MainLayout,
+    redirect: '/home',
+    children: [
+      {
+        path: 'home',
+        component: () => import('@/views/home')
+      }
+    ]
   }
 ]
 
@@ -20,4 +32,4 @@ const end = [
   }
 ]
 
-export default base.concat(end)
+export default feature.concat(base, end)

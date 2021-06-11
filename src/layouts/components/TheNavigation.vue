@@ -1,11 +1,9 @@
 <template>
-  hello
+  navigation
 </template>
 
 <script>
 export default {
-  name: 'Home',
-  components: {
-  }
+  name: 'TheNavigation'
 }
 </script>
