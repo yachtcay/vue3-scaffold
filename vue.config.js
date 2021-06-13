@@ -15,25 +15,26 @@ module.exports = {
   devServer: {
     open: true,
     overlay: {
-      warnings: true,
+      warnings: false,
       errors: true
     },
     proxy: {
       '/api': {
-        target: process.env.VUE_REQUEST_BASE,
+        target: process.env.VUE_APP_REQUEST_BASE,
         changeOrigin: true,
         pathRewrite: {
           '^/api': 'api'
         }
       },
       '/auth': {
-        target: process.env.VUE_REQUEST_BASE,
+        target: process.env.VUE_APP_REQUEST_BASE,
         changeOrigin: true,
         pathRewrite: {
           '^/auth': 'auth'
         }
-      }
-    }
+      },
+    },
+    before: require('./mock/server')
   },
   css: {
     loaderOptions: {
