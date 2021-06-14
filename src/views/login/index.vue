@@ -3,10 +3,10 @@
     <a-alert message="用户名和密码均为 admin" type="warning" style="margin: 0 0 20px 0;" />
     <a-form ref="formRef" :model="form" :rules="rules">
       <a-form-item label="用户名" :labelCol="{ span: 6 }" name="username">
-        <a-input v-model:value="form.username" />
+        <a-input v-model:value="form.username" style="width: 200px" />
       </a-form-item>
       <a-form-item label="密码" :labelCol="{ span: 6 }" name="password">
-        <a-input v-model:value="form.password" />
+        <a-input-password v-model:value="form.password" style="width: 200px" />
       </a-form-item>
       <a-form-item :wrapper-col="{ offset: 6 }">
         <a-button type="primary" @click="handleLogin">登录</a-button>
@@ -23,8 +23,8 @@ export default {
   data() {
     return {
       form: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: 'admin'
       },
       rules: {
         username: {
@@ -59,10 +59,10 @@ export default {
 
 <style lang="less">
   .container {
-    width: 300px;
+    width: 400px;
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
   }
 </style>
