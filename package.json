@@ -28,12 +28,12 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-airbnb": "^5.0.2",
     "babel-eslint": "^10.1.0",
-    "chalk": "^2.4.2",
-    "chokidar": "^3.5.1",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.23.3",
     "eslint-plugin-vue": "^7.0.0",
+    "express": "^4.17.1",
     "less": "^3.0.4",
-    "less-loader": "^5.0.0"
+    "less-loader": "^5.0.0",
+    "mockjs": "^1.1.0"
   }
 }
