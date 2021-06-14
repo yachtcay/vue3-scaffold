@@ -1,16 +1,14 @@
 module.exports = [
   {
-    url: '/mock/menu',
+    url: '/api/menu',
     type: 'get',
-    response(req, rsp) {
-      rsp.json({
-        code: 20000,
-        data: [
-          {
-            name: 'home'
-          }
-        ]
-      })
-    }
+    response: () => ({
+      code: 20000,
+      data: [
+        {
+          routeName: 'home'
+        }
+      ]
+    })
   }
 ]
