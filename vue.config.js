@@ -2,6 +2,9 @@
 
 const path = require('path')
 
+// 是否使用 mock
+const mockMode = true
+
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -18,7 +21,8 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    proxy: {
+    // 使用 mock 不进行代理
+    proxy: mockMode ? null : {
       '/api': {
         target: process.env.VUE_APP_REQUEST_BASE,
         changeOrigin: true,
@@ -34,7 +38,7 @@ module.exports = {
         }
       },
     },
-    before: require('./mock/server')
+    before: mockMode ? require('./mock/server') : null
   },
   css: {
     loaderOptions: {
