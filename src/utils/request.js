@@ -4,11 +4,12 @@ import axios from 'axios'
 const BUSINESS_CODE_SUCCESS = 20000
 
 const axiosInstance = axios.create({
-  baseURL: process.env.VUE_APP_REQUEST_BASE,
+  baseURL: `${process.env.VUE_APP_REQUEST_BASE}/api`,
   timeout: 6000
 })
 
 axiosInstance.interceptors.request.use((config) => {
+  // TODO
   return config
 }, (error) => {
   console.error(error)
