@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // 约定的业务状态码
-const BUSINESS_CODE_SUCCESS = 20000
+const BUSINESS_CODE_SUCCESS = 20000 // 请求成功
 
 const axiosInstance = axios.create({
   baseURL: `${process.env.VUE_APP_REQUEST_BASE}/api`,
