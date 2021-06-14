@@ -24,6 +24,7 @@ module.exports = {
       'after': true
     }],
     'comma-style': [2, 'last'],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "import/prefer-default-export": "off"
   }
 }
