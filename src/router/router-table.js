@@ -1,5 +1,4 @@
 import MainLayout from '@/layouts/MainLayout'
-import Home from '@/views/home'
 import Error404 from '@/views/features/404'
 import Login from '@/views/login'
 
@@ -9,7 +8,11 @@ const feature = [
     path: '/404',
     name: 'NotFound',
     component: Error404
-  },
+  }
+]
+
+// 基本路由
+const base = [
   {
     path: '/login',
     name: 'Login',
@@ -17,8 +20,12 @@ const feature = [
   }
 ]
 
-// 基本路由
-const base = [
+// 系统路由
+const system = [
+]
+
+// 业务路由
+const example = [
   {
     path: '/',
     component: MainLayout,
@@ -29,30 +36,10 @@ const base = [
       {
         path: 'home',
         name: 'Home',
-        component: Home
+        component: () => import('@/views/home')
       }
     ]
-  }
-]
-
-// 系统路由
-const system = [
-  {
-    path: '/example',
-    component: MainLayout,
-    redirect: '/example/example1',
-    children: [
-      {
-        path: 'example1',
-        name: 'Example1',
-        component: () => import('@/views/business/example/example1')
-      }
-    ]
-  }
-]
-
-// 业务路由
-const example = [
+  },
   {
     path: '/example',
     component: MainLayout,
@@ -87,7 +74,12 @@ const end = [
   }
 ]
 
-export const systemRoutes = feature.concat(base, end)
-export const business = example
+// 导出需要验证的路由
+const needAuthRouts = [...system, ...example]
 
-export default feature.concat(base, business, end)
+export {
+  needAuthRouts
+}
+
+// 对外只导出基本路由，具体业务路由，由后端请求来构成
+export default [...feature, ...base, ...end]
