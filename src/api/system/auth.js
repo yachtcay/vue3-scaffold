@@ -1,9 +1,8 @@
-import request from '@/utils/request'
+import http from '@/http'
 
-export function login(data) {
-  request({
-    url: '/login',
-    method: 'post',
-    data
+export function login({ username, password }) {
+  return http.post('/login', {
+    username,
+    password
   })
 }

@@ -1,8 +1,5 @@
-import request from '@/utils/request'
+import http from '@/http'
 
-export function fetchMenu() {
-  return request({
-    url: '/menu',
-    method: 'get'
-  })
+export function queryMenu() {
+  return http.get('/menu')
 }
