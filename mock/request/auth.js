@@ -9,14 +9,16 @@ module.exports = [
         return {
           code: 20000,
           data: true,
-          message: '登录成功'
+          message: '登录成功',
+          success: true
         }
       }
 
       return {
         code: 20000,
         data: true,
-        message: '用户名或者密码不正确'
+        message: '用户名或者密码不正确',
+        success: false
       }
     }
   }
