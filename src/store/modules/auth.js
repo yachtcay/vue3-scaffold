@@ -4,7 +4,10 @@ const state = () => ({
   token: null
 })
 
-const getters = () => {
+const getters = {
+  token(state) {
+    return state.token
+  }
 }
 
 const mutations = {
@@ -14,18 +17,15 @@ const mutations = {
 }
 
 const actions = {
-  login({ commit }, { username, password }) {
-    return new Promise((resolve, reject) => {
-      api.login({
-        username,
-        password
-      }).then(({ data }) => {
-        commit('SET_TOKEN', data.token)
-        resolve()
-      }, (error) => {
-        reject(error)
-      })
-    })
+  async login({ commit }, { username, password }) {
+    try {
+      const { data } = await api.login({ username, password })
+      commit('SET_TOKEN', data.token)
+
+      return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 }
 
