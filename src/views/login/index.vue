@@ -42,6 +42,11 @@ export default {
     handleLogin() {
       this.$refs.formRef.validate().then(() => {
         // login
+        // this.$store
+        this.$store.dispatch('auth/login', {
+          username: this.form.username,
+          password: this.form.password
+        })
       })
     }
   }
