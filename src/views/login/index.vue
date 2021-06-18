@@ -9,7 +9,7 @@
         <a-input-password v-model:value="form.password" style="width: 200px" />
       </a-form-item>
       <a-form-item :wrapper-col="{ offset: 6 }">
-        <a-button type="primary" @click="handleLogin">登录</a-button>
+        <a-button type="primary" :loading="loading" @click="handleLogin">登录</a-button>
       </a-form-item>
     </a-form>
   </a-card>
@@ -35,17 +35,20 @@ export default {
           message: '请输入密码',
           trigger: 'blur'
         }
-      }
+      },
+      loading: false
     }
   },
   methods: {
     handleLogin() {
       this.$refs.formRef.validate().then(() => {
         // login
-        // this.$store
+        this.loading = true
         this.$store.dispatch('auth/login', {
           username: this.form.username,
           password: this.form.password
+        }).finally(() => {
+          this.loading = false
         })
       })
     }
