@@ -25,6 +25,7 @@ module.exports = {
     }],
     'comma-style': [2, 'last'],
     "import/extensions": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-shadow": ["error", { "builtinGlobals": false, "hoist": "functions", "allow": ['state'] }]
   }
 }
