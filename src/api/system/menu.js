@@ -1,5 +1,3 @@
 import http from '@/http'
 
-export function queryMenu() {
-  return http.get('/menu')
-}
+export const queryMenu = () => http.get('/menu')
