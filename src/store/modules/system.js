@@ -1,5 +1,4 @@
 const state = () => ({
-  user: null
 })
 
 const getters = () => {
