@@ -1,4 +1,4 @@
-import MainLayout from '@/layouts/MainLayout'
+import MainLayout from '@/layout/MainLayout'
 import Error404 from '@/views/features/404'
 import Login from '@/views/login'
 
