@@ -18,10 +18,12 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use((response) => {
   const rspData = response.data
 
+  // TODO 需要和后端协商业务代码含义此处添加
   if (rspData.code !== businessCodeStatus.SUCCESS) {
     return Promise.reject(new Error(rspData.message || 'Error'))
   }
 
+  // 此处含义一般为，无法删除，用户名密码错误等，对请求的行为本身进行回应
   if (!rspData.success) {
     message.error(rspData.message)
     return Promise.reject(new Error(rspData.message || 'Error'))
