@@ -16,8 +16,6 @@
 </template>
 
 <script>
-import * as api from '@/api/system/auth'
-
 export default {
   name: 'Login',
   data() {
@@ -43,14 +41,7 @@ export default {
   methods: {
     handleLogin() {
       this.$refs.formRef.validate().then(() => {
-        api.login({
-          username: this.form.username,
-          password: this.form.password
-        }).then(({ data }) => {
-          console.log(data)
-        })
-      }).catch((error) => {
-        console.error(error)
+        // login
       })
     }
   }
