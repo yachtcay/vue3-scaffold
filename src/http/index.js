@@ -20,15 +20,23 @@ axiosInstance.interceptors.response.use((response) => {
 
   // TODO 需要和后端协商业务代码含义此处添加
   if (rspData.code !== businessCodeStatus.SUCCESS) {
+    if (rspData.message) {
+      message.error(rspData.message)
+    }
     return Promise.reject(new Error(rspData.message || 'Error'))
   }
 
   // 此处含义一般为，无法删除，用户名密码错误等，对请求的行为本身进行回应
   if (!rspData.success) {
-    message.error(rspData.message)
+    if (rspData.message) {
+      message.error(rspData.message)
+    }
     return Promise.reject(new Error(rspData.message || 'Error'))
   }
 
+  if (rspData.message) {
+    message.success(rspData.message)
+  }
   return {
     response,
     result: rspData,
@@ -66,7 +74,7 @@ axiosInstance.interceptors.response.use((response) => {
   }
 
   notification.error({
-    message: '数据请求失败，请联系管理员'
+    message: '数据请求失败'
   })
   return Promise.reject(error)
 })
