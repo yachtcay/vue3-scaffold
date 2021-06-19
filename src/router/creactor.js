@@ -1,9 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import routes from './router-table'
+import {
+  feature,
+  base,
+  end,
+  system,
+  example
+} from './router-table'
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes: [...feature, ...base, ...system, ...example, ...end]
 })
 
 export default router
