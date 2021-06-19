@@ -27,6 +27,7 @@ module.exports = {
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "no-shadow": ["error", { "builtinGlobals": false, "hoist": "functions", "allow": ['state'] }],
-    "no-param-reassign": ["error", { "props": false }]
+    "no-param-reassign": ["error", { "props": false }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   }
 }
