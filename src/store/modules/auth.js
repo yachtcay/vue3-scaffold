@@ -1,7 +1,8 @@
 import * as api from '@/api/auth'
+import * as auth from '@/utils/auth'
 
 const state = () => ({
-  token: null
+  token: auth.getEnduranceTokenOfStorage()
 })
 
 const getters = {
@@ -17,10 +18,15 @@ const mutations = {
 }
 
 const actions = {
+  /* 登录成功主要做两件事
+   * #1 把 jwt 令牌存储在 vuex 中
+   * #2 把 jwt 令牌持久化在 sessionStorage 中，为了防止在登录成功之后，用户刷新页面反复登录的问题
+   */
   async login({ commit }, { username, password }) {
     try {
       const { data } = await api.login({ username, password })
-      commit('SET_TOKEN', data.token)
+      auth.saveEnduranceTokenOfStorage(data)
+      commit('SET_TOKEN', data)
 
       return Promise.resolve()
     } catch (error) {
