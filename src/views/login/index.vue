@@ -42,11 +42,14 @@ export default {
   methods: {
     handleLogin() {
       this.$refs.formRef.validate().then(() => {
-        // login
         this.loading = true
         this.$store.dispatch('auth/login', {
           username: this.form.username,
           password: this.form.password
+        }).then(() => {
+          this.$router.replace({
+            name: 'Home'
+          })
         }).finally(() => {
           this.loading = false
         })
