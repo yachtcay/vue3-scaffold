@@ -32,7 +32,7 @@ module.exports = [
           ]
         }
       ],
-      message: '',
+      message: null,
       success: true
     })
   }
