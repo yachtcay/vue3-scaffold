@@ -70,16 +70,16 @@ const example = [
 const end = [
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/404'
+    redirect: {
+      name: 'NotFound'
+    }
   }
 ]
 
-// 导出需要验证的路由
-const needAuthRouts = [...system, ...example]
-
 export {
-  needAuthRouts
+  feature,
+  system,
+  example,
+  base,
+  end
 }
-
-// 对外只导出基本路由，具体业务路由，由后端请求来构成
-export default [...feature, ...base, ...end]
