@@ -39,6 +39,12 @@ export default {
       loading: false
     }
   },
+  mounted() {
+    const paramsOfRouter = this.$route.params
+    if (paramsOfRouter.message) {
+      this.$message.error(paramsOfRouter.message)
+    }
+  },
   methods: {
     handleLogin() {
       this.$refs.formRef.validate().then(() => {
