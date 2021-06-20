@@ -1,15 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import {
   feature,
-  base,
-  end,
-  system,
-  example
+  base
 } from './router-table'
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: [...feature, ...base, ...system, ...example, ...end]
+  routes: [...feature, ...base]
 })
 
 export default router
