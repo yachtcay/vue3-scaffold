@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+import router from '@/router'
 import { message, notification } from 'ant-design-vue'
 import { businessCodeStatus, httpCodeStatus } from './consts'
 
@@ -58,8 +59,11 @@ axiosInstance.interceptors.response.use((response) => {
   }
 
   if (rsponseHttpCodeStatus === httpCodeStatus.UNAUTHORIZED) {
-    notification.error({
-      message: '登录状态已失效，请重新登录'
+    router.replace({
+      name: 'Login',
+      params: {
+        message: '登录状态已失效，请重新登录'
+      }
     })
 
     return Promise.reject(error)
