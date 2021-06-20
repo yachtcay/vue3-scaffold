@@ -5,10 +5,6 @@ import router from './creactor'
 
 NProgress.configure({ showSpinner: false })
 
-const routesNameWhiteList = [
-  'Login'
-]
-
 /**
  * 前置路由守卫
  * v4 版本路由只需要 return 即可，不需要 next 但是也保留有
@@ -20,7 +16,7 @@ router.beforeEach(async (to) => {
   const user = store.getters['user/userInfo']
 
   // 路由白名单中如果有，直接跳转目标页面
-  if (!token && routesNameWhiteList.indexOf(to.name) !== -1) {
+  if (!token && 'requiresAuth' in to.meta && to.meta.requiresAuth === false) {
     return true
   }
 

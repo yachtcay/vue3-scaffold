@@ -13,7 +13,10 @@ const feature = [
   {
     path: '/404',
     name: 'NotFound',
-    component: Error404
+    component: Error404,
+    meta: {
+      requiresAuth: false
+    }
   }
 ]
 
@@ -22,7 +25,10 @@ const base = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {
+      requiresAuth: false
+    }
   },
   {
     path: '/',
@@ -34,6 +40,9 @@ const base = [
       {
         path: 'home',
         name: 'Home',
+        meta: {
+          title: '首页'
+        },
         component: () => import('@/views/home')
       }
     ]
@@ -42,6 +51,9 @@ const base = [
     path: '/:pathMatch(.*)*',
     redirect: {
       name: 'NotFound'
+    },
+    meta: {
+      requiresAuth: false
     }
   }
 ]
@@ -54,6 +66,9 @@ const system = [
 const example = [
   {
     path: '/example',
+    meta: {
+      title: '示例'
+    },
     component: MainLayout,
     redirect: {
       name: 'Example1'
@@ -62,16 +77,25 @@ const example = [
       {
         path: 'example1',
         name: 'Example1',
+        meta: {
+          title: '示例1'
+        },
         component: () => import('@/views/business/example/example1')
       },
       {
         path: 'example2',
         name: 'Example2',
+        meta: {
+          title: '示例2'
+        },
         component: () => import('@/views/business/example/example2')
       },
       {
         path: 'example3',
         name: 'Example3',
+        meta: {
+          title: '示例3'
+        },
         component: () => import('@/views/business/example/example3')
       }
     ]
