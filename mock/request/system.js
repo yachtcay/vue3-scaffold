@@ -6,7 +6,8 @@ module.exports = [
       code: 20000,
       data: [
         {
-          routeName: '',
+          routeName: 'Example',
+          type: 'catalog',
           group: [
             {
               name: 'group1',
@@ -20,18 +21,34 @@ module.exports = [
           children: [
             {
               routeName: 'Example1',
-              children: [],
-              group: []
+              type: 'menu',
+              group: [],
+              children: []
             },
             {
               routeName: 'Example2',
-              children: [],
-              group: []
+              type: 'menu',
+              group: [],
+              children: []
             },
             {
               routeName: 'Example3',
-              children: [],
-              group: []
+              type: 'menu',
+              group: [],
+              children: []
+            },
+            {
+              routeName: 'Example4',
+              type: 'menu',
+              group: [],
+              children: [
+                {
+                  routeName: 'Example4List'
+                },
+                {
+                  routeName: 'Example4Detail'
+                }
+              ]
             }
           ]
         }
