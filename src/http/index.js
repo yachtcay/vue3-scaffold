@@ -27,7 +27,7 @@ axiosInstance.interceptors.response.use((response) => {
     return Promise.reject(new Error(rspData.message || 'Error'))
   }
 
-  // 此处含义一般为，无法删除，用户名密码错误等，对请求的行为本身进行回应
+  // 此处含义一般为，无法删除，用户名密码错误等，对请求的行为本身进行回应，不代表后端报错
   if (!rspData.success) {
     if (rspData.message) {
       message.error(rspData.message)
