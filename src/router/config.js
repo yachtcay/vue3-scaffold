@@ -5,6 +5,15 @@ import router from './creactor'
 
 NProgress.configure({ showSpinner: false })
 
+// 获取到用户信心以后，进行授权判断
+function hasAuthRoute(to) {
+  if (to.name === 'Home') {
+    return true
+  }
+
+  return store.getters['system/authRouteKeys'].indexOf(to.name) !== -1
+}
+
 /**
  * 前置路由守卫
  * v4 版本路由只需要 return 即可，不需要 next 但是也保留有
@@ -15,7 +24,7 @@ router.beforeEach(async (to) => {
   const token = store.getters['auth/token']
   const user = store.getters['user/userInfo']
 
-  // 路由白名单中如果有，直接跳转目标页面
+  // 没有令牌，如果这个页面不需要验证，就正常路由
   if (!token && 'requiresAuth' in to.meta && to.meta.requiresAuth === false) {
     return true
   }
@@ -24,6 +33,7 @@ router.beforeEach(async (to) => {
   if (!token) {
     return {
       name: 'Login',
+      replace: true,
       params: {
         message: '登录状态已失效，请先登录'
       }
@@ -33,25 +43,24 @@ router.beforeEach(async (to) => {
   // 如果没有用户信息，则可能是已经登录成功，但是用户刷新了页面，此时重新拉取必要数据即可
   if (!user) {
     try {
+      await store.dispatch('system/buildNavigationMenu')
       await store.dispatch('user/getUser')
-    } catch (error) {
-      return {
-        name: 'Login',
-        params: {
-          message: '发生错误，请联系管理员'
+
+      // 在有令牌的情况下，尝试路由登录页则跳转首页
+      if (to.name === 'Login') {
+        return {
+          name: 'Home',
+          replace: true
         }
       }
+
+      return hasAuthRoute(to) ? { ...to, replace: true } : false
+    } catch (error) {
+      return false
     }
   }
 
-  // 到这里有个特殊情况，在令牌和用户信息都存在的情况下，如果访问首页，直接跳转到 Home 页，因为 Login 页面特殊性放在第一个判断
-  if (to.name === 'Login') {
-    return {
-      name: 'Home'
-    }
-  }
-
-  return true
+  return hasAuthRoute(to)
 })
 
 // 后置
