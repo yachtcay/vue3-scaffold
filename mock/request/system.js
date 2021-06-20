@@ -6,28 +6,32 @@ module.exports = [
       code: 20000,
       data: [
         {
-          routeName: 'Home',
-          groupName: '',
-          children: []
-        },
-        {
           routeName: '',
-          groupName: 'Example',
+          group: [
+            {
+              name: 'group1',
+              groupIndexs: [0, 1]
+            },
+            {
+              name: 'group2',
+              groupIndexs: [2]
+            }
+          ],
           children: [
             {
               routeName: 'Example1',
-              groupName: '',
-              children: []
+              children: [],
+              group: []
             },
             {
               routeName: 'Example2',
-              groupName: '',
-              children: []
+              children: [],
+              group: []
             },
             {
               routeName: 'Example3',
-              groupName: '',
-              children: []
+              children: [],
+              group: []
             }
           ]
         }
