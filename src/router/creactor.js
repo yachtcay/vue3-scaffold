@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import {
   feature,
   base,
@@ -8,7 +8,7 @@ import {
 } from './router-table'
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [...feature, ...base, ...system, ...example, ...end]
 })
 
