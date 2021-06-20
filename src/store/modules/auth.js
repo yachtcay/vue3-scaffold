@@ -1,5 +1,7 @@
 import * as api from '@/api/auth'
 import * as auth from '@/utils/auth'
+import * as keys from '@/utils/encrypt/keys'
+import { encrypt } from '@/utils/encrypt'
 
 const state = () => ({
   token: auth.getEnduranceTokenOfStorage()
@@ -24,7 +26,10 @@ const actions = {
    */
   async login({ commit }, { username, password }) {
     try {
-      const { data } = await api.login({ username, password })
+      const { data } = await api.login({
+        username,
+        password: encrypt(keys.publicKeyForBackend, password)
+      })
       auth.saveEnduranceTokenOfStorage(data)
       commit('SET_TOKEN', data)
 
