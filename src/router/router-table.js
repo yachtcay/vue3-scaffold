@@ -4,7 +4,7 @@
  */
 
 import MainLayout from '@/layout/MainLayout'
-import Error404 from '@/views/features/404'
+import NotFoundError from '@/views/features/404'
 import Login from '@/views/login'
 
 // feature
@@ -12,7 +12,7 @@ const feature = [
   {
     path: '/404',
     name: 'NotFound',
-    component: Error404,
+    component: NotFoundError,
     meta: {
       requiresAuth: false
     }
