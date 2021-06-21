@@ -72,9 +72,13 @@ export default {
 <style lang="less">
   .side-menu-main-layout-container {
     color: #fff;
-    display: flex;
-    flex-direction: column;
     height: 100vh;
+
+    .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
 
     .logo {
       position: relative;
