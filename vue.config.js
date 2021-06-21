@@ -4,6 +4,7 @@ const path = require('path')
 
 // 是否使用 mock
 const mockMode = true
+const port = process.env.VUE_APP_DEV_SERVER_PORT
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -16,6 +17,7 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
+    port,
     open: true,
     overlay: {
       warnings: false,
