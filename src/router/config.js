@@ -5,7 +5,7 @@ import router from './creactor'
 
 NProgress.configure({ showSpinner: false })
 
-// 获取到用户信心以后，进行授权判断
+// 获取到用户信息以后，进行授权判断
 function hasAuthRoute(to) {
   if (to.name === 'Home') {
     return true
