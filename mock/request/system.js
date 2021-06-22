@@ -7,46 +7,43 @@ module.exports = [
       data: [
         {
           routeName: 'Example',
+          title: 'Example',
           type: 'catalog',
-          group: [
-            {
-              name: 'group1',
-              groupIndexs: [0, 1]
-            },
-            {
-              name: 'group2',
-              groupIndexs: [2]
-            }
-          ],
           children: [
             {
               routeName: 'Example1',
+              title: 'Example1',
               type: 'menu',
-              group: [],
               children: []
             },
             {
               routeName: 'Example2',
+              title: 'Example2',
               type: 'menu',
-              group: [],
               children: []
             },
             {
               routeName: 'Example3',
+              title: 'Example3',
               type: 'menu',
-              group: [],
               children: []
             },
             {
               routeName: 'Example4',
+              title: 'Example4',
               type: 'menu',
-              group: [],
               children: [
                 {
-                  routeName: 'Example4List'
+                  routeName: 'Example4List',
+                  title: 'Example4List',
+                  type: 'menu',
+                  children: []
                 },
                 {
-                  routeName: 'Example4Detail'
+                  routeName: 'Example4Detail',
+                  title: 'Example4Detail',
+                  type: 'menu',
+                  children: []
                 }
               ]
             }
