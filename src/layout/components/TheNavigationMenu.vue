@@ -1,8 +1,6 @@
 <template>
 <div>
   <a-menu
-    id="dddddd"
-    style="width: 256px"
     v-model:openKeys="openKeys"
     v-model:selectedKeys="selectedKeys"
     mode="inline"
@@ -54,6 +52,18 @@
       <a-menu-item key="10">Option 10</a-menu-item>
       <a-menu-item key="11">Option 11</a-menu-item>
       <a-menu-item key="12">Option 12</a-menu-item>
+    </a-sub-menu>
+    <a-sub-menu key="sub5">
+      <template #title>
+        <span>
+          <SettingOutlined />
+          <span>Navigation Three</span>
+        </span>
+      </template>
+      <a-menu-item key="s9">Option 9</a-menu-item>
+      <a-menu-item key="s10">Option 10</a-menu-item>
+      <a-menu-item key="s11">Option 11</a-menu-item>
+      <a-menu-item key="s12">Option 12</a-menu-item>
     </a-sub-menu>
   </a-menu>
   </div>

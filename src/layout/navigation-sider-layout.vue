@@ -1,7 +1,6 @@
 <template>
-  <!-- sider menu -->
   <a-layout v-if="isSideMenu" class="side-menu-main-layout-container">
-    <a-layout-sider>
+    <a-layout-sider width="210">
       <div class="logo">logo</div>
       <div class="navigation">
         <navigation />
@@ -22,33 +21,16 @@
       <a-layout-footer>Footer</a-layout-footer>
     </a-layout>
   </a-layout>
-
-  <!-- header menu -->
-  <a-layout v-if="isTopMenu">
-    <a-layout-header>Header</a-layout-header>
-    <a-layout-content>Content</a-layout-content>
-    <a-layout-footer>Footer</a-layout-footer>
-  </a-layout>
-
-  <!-- mix menu -->
-  <a-layout v-if="isMixMenu">
-    <a-layout-header>Header</a-layout-header>
-    <a-layout>
-      <a-layout-sider>Sider</a-layout-sider>
-      <a-layout-content>Content</a-layout-content>
-    </a-layout>
-    <a-layout-footer>Footer</a-layout-footer>
-  </a-layout>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { layoutType as layoutTypeConsts } from '@/consts'
-import Navigation from './components/TheNavigation'
+import Navigation from './components/TheNavigationMenu'
 
 export default {
-  name: 'MainLayout',
+  name: 'NavigationSiderLayout',
   components: {
     Navigation,
     MenuUnfoldOutlined,
