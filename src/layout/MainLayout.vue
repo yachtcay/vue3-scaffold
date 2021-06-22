@@ -6,12 +6,9 @@
       <div class="navigation">
         <navigation />
       </div>
-      <div class="collapse">
-        <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px" />
-      </div>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header>
+      <a-layout-header style="background: #fff; padding: 0;">
         <menu-unfold-outlined
           v-if="collapsed"
           class="trigger"
@@ -46,13 +43,16 @@
 
 <script>
 import { mapState } from 'vuex'
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { layoutType as layoutTypeConsts } from '@/consts'
 import Navigation from './components/TheNavigation'
 
 export default {
   name: 'MainLayout',
   components: {
-    Navigation
+    Navigation,
+    MenuUnfoldOutlined,
+    MenuFoldOutlined
   },
   computed: {
     ...mapState('settings', {
@@ -65,6 +65,9 @@ export default {
     return {
       collapsed: false
     }
+  },
+  methods: {
+    toggleCollapsed() {}
   }
 }
 </script>
@@ -94,8 +97,16 @@ export default {
       overflow: hidden auto;
     }
 
-    .collapse {
-      width: 100%;
+    .trigger {
+      font-size: 18px;
+      line-height: 64px;
+      padding: 0 24px;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #1890ff;
+      }
     }
   }
 </style>

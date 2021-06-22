@@ -1,7 +1,8 @@
 <template>
+<div>
   <a-menu
     id="dddddd"
-    style="width: 100%; height: 100%;"
+    style="width: 256px"
     v-model:openKeys="openKeys"
     v-model:selectedKeys="selectedKeys"
     mode="inline"
@@ -20,12 +21,12 @@
           <QqOutlined />
           <span>Item 1</span>
         </template>
-        <a-menu-item key="a1">Option 1</a-menu-item>
-        <a-menu-item key="a2">Option 2</a-menu-item>
+        <a-menu-item key="1">Option 1</a-menu-item>
+        <a-menu-item key="2">Option 2</a-menu-item>
       </a-menu-item-group>
       <a-menu-item-group key="g2" title="Item 2">
-        <a-menu-item key="a3">Option 3</a-menu-item>
-        <a-menu-item key="a4">Option 4</a-menu-item>
+        <a-menu-item key="3">Option 3</a-menu-item>
+        <a-menu-item key="4">Option 4</a-menu-item>
       </a-menu-item-group>
     </a-sub-menu>
     <a-sub-menu key="sub2" @titleClick="titleClick">
@@ -54,19 +55,8 @@
       <a-menu-item key="11">Option 11</a-menu-item>
       <a-menu-item key="12">Option 12</a-menu-item>
     </a-sub-menu>
-    <a-sub-menu key="sub5">
-      <template #title>
-        <span>
-          <SettingOutlined />
-          <span>Navigation Three</span>
-        </span>
-      </template>
-      <a-menu-item key="c9">Option 9</a-menu-item>
-      <a-menu-item key="c10">Option 10</a-menu-item>
-      <a-menu-item key="c11">Option 11</a-menu-item>
-      <a-menu-item key="c12">Option 12</a-menu-item>
-    </a-sub-menu>
   </a-menu>
+  </div>
 </template>
 
 <script>
