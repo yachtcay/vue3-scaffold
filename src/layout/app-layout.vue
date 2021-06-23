@@ -1,7 +1,5 @@
 <template>
-  <navigation-sider-layout class="main-layout" v-if="isSideMenu" />
-  <navigation-top-layout class="main-layout" v-if="isTopMenu" />
-  <navigation-mix-layout class="main-layout" v-if="isMixMenu" />
+  <component :is="navigationComponent" class="main-layout"></component>
 </template>
 
 <script>
@@ -18,16 +16,21 @@ export default {
     NavigationTopLayout,
     NavigationMixLayout
   },
-  computed: {
-    ...mapState('settings', {
-      isSideMenu: (state) => state.layoutType === layoutTypeConsts.SIDE_MENU,
-      isTopMenu: (state) => state.layoutType === layoutTypeConsts.TOP_MENU,
-      isMixMenu: (state) => state.layoutType === layoutTypeConsts.MIX_MENU
-    })
-  },
   data() {
     return {
     }
+  },
+  computed: {
+    ...mapState('settings', {
+      navigationComponent: (state) => {
+        const componentsMapper = []
+        componentsMapper[layoutTypeConsts.SIDE_MENU] = 'navigation-sider-layout'
+        componentsMapper[layoutTypeConsts.TOP_MENU] = 'navigation-top-layout'
+        componentsMapper[layoutTypeConsts.MIX_MENU] = 'navigation-mix-layout'
+
+        return componentsMapper[state.layoutType]
+      }
+    })
   },
   methods: {
   }
