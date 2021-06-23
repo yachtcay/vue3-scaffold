@@ -3,16 +3,18 @@
 </template>
 
 <script>
+import { throttle } from '@/utils/helper'
+
 export default {
   name: 'Home',
   components: {
   },
+  created() {
+  },
   methods: {
-    handleClick() {
-      this.$router.push({
-        name: 'Example'
-      })
-    }
+    handleClick: throttle.call(this, function () {
+      console.log(this)
+    })
   }
 }
 </script>
