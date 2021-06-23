@@ -1,14 +1,14 @@
 import * as api from '@/api/system'
-import { getRspRouteTableKeys } from '@/router/helper'
+import { getRspMenuTableKeys } from '@/router/helper'
 
 const state = () => ({
   navigationMenu: [],
-  requiresAuthRoutesOfKeys: []
+  requiresAuthMenuOfKeys: []
 })
 
 const getters = {
-  authRouteKeys(state) {
-    return state.requiresAuthRoutesOfKeys
+  authMenuKeys(state) {
+    return state.requiresAuthMenuOfKeys
   }
 }
 
@@ -17,8 +17,8 @@ const mutations = {
     state.navigationMenu = menu
   },
 
-  SET_REQUIRES_AUTH_ROUTES_OF_KEYS(state, keys) {
-    state.requiresAuthRoutesOfKeys = keys
+  SET_REQUIRES_AUTH_MENU_OF_KEYS(state, keys) {
+    state.requiresAuthMenuOfKeys = keys
   }
 }
 
@@ -27,7 +27,7 @@ const actions = {
     try {
       const { data } = await api.queryMenu()
       commit('SET_NAVIGATION_MENU', data)
-      commit('SET_REQUIRES_AUTH_ROUTES_OF_KEYS', getRspRouteTableKeys(data))
+      commit('SET_REQUIRES_AUTH_MENU_OF_KEYS', getRspMenuTableKeys(data))
 
       return Promise.resolve(data)
     } catch (error) {

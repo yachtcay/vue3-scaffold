@@ -1,15 +1,15 @@
-// 获取服务端拥有的路由权限 routeName 值变为一维数组的形式
-export const getRspRouteTableKeys = (rspRouteTable = []) => {
+// 获取服务端拥有的路由权限 MenuName 值变为一维数组的形式
+export const getRspMenuTableKeys = (rspMenuTable = []) => {
   const keys = []
-  for (let i = 0; i < rspRouteTable.length; i++) {
-    const currentRoute = rspRouteTable[i]
+  for (let i = 0; i < rspMenuTable.length; i++) {
+    const currentMenu = rspMenuTable[i]
 
-    if ('routeName' in currentRoute) {
-      keys.push(currentRoute.routeName)
+    if ('MenuName' in currentMenu) {
+      keys.push(currentMenu.MenuName)
     }
 
-    if ('children' in currentRoute && currentRoute.children.length > 0) {
-      keys.push(...getRspRouteTableKeys(currentRoute.children))
+    if ('children' in currentMenu && currentMenu.children.length > 0) {
+      keys.push(...getRspMenuTableKeys(currentMenu.children))
     }
   }
 

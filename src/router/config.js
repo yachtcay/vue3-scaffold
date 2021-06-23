@@ -11,7 +11,7 @@ function hasAuthRoute(to) {
     return true
   }
 
-  return store.getters['system/authRouteKeys'].indexOf(to.name) !== -1
+  return store.getters['system/authMenuKeys'].indexOf(to.name) !== -1
 }
 
 /**
@@ -54,7 +54,7 @@ router.beforeEach(async (to) => {
         }
       }
 
-      return hasAuthRoute(to) ? { ...to, replace: true } : false
+      return hasAuthRoute(to) ? { ...to, replace: true } : { name: 'NotFound', replace: true }
     } catch (error) {
       return false
     }
