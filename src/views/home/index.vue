@@ -3,18 +3,20 @@
 </template>
 
 <script>
-import { throttle } from '@/utils/helper'
-
 export default {
   name: 'Home',
   components: {
   },
   created() {
   },
+  data() {
+    return {
+      buttonType: 'default'
+    }
+  },
   methods: {
-    handleClick: throttle.call(this, function () {
-      console.log(this)
-    })
+    handleClick() {
+    }
   }
 }
 </script>
