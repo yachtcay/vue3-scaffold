@@ -7,7 +7,7 @@ NProgress.configure({ showSpinner: false })
 
 // 获取到用户信息以后，进行授权判断
 function hasAuthRoute(to) {
-  if (to.name === 'Home') {
+  if (to.name === 'Home' || to.name === 'NotFound') {
     return true
   }
 
@@ -54,7 +54,7 @@ router.beforeEach(async (to) => {
         }
       }
 
-      return hasAuthRoute(to) ? { ...to, replace: true } : { name: 'NotFound', replace: true }
+      return hasAuthRoute(to) ? { ...to, replace: true } : false
     } catch (error) {
       return false
     }
