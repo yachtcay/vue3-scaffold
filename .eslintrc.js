@@ -28,6 +28,8 @@ module.exports = {
     "import/prefer-default-export": "off",
     "no-shadow": ["error", { "builtinGlobals": false, "hoist": "functions", "allow": ['state'] }],
     "no-param-reassign": ["error", { "props": false }],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "func-names": ["error", "never"],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }]
   }
 }
