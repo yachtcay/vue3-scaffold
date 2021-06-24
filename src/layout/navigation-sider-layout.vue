@@ -3,7 +3,7 @@
     <a-layout-sider width="210">
       <div class="logo">logo</div>
       <div class="navigation">
-        <navigation />
+        <navigation-menu />
       </div>
     </a-layout-sider>
     <a-layout>
@@ -27,12 +27,12 @@
 import { mapState } from 'vuex'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { layoutType as layoutTypeConsts } from '@/consts'
-import Navigation from './components/TheNavigationMenu'
+import NavigationMenu from './components/TheNavigationMenu'
 
 export default {
   name: 'NavigationSiderLayout',
   components: {
-    Navigation,
+    NavigationMenu,
     MenuUnfoldOutlined,
     MenuFoldOutlined
   },
