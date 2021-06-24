@@ -2,7 +2,7 @@
 按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架，不接受 PR，不定期更新，主要用于交流学习
 
 # TODO
-布局配置参考 Ant Design Pro 实现
+布局参考 Ant Design Pro
 
 ## 布局
 - [ ] 可选 Side Menu Layout
