@@ -18,7 +18,9 @@ const MenuIcon = (props, context) => (
 
 const renderSubMenuSlot = (navigation) => (
   <span>
-    <MenuIcon icon={navigation.componentOfIcon} />
+    {
+      navigation.icon ? <MenuIcon icon={navigation.icon} /> : null
+    }
     <span>{ navigation.title }</span>
   </span>
 )
@@ -39,7 +41,12 @@ const renderNavigationMenu = (navigationMenu = []) => (
     }
 
     if (navigation.type === NAVIGATION_TYPE.MENU) {
-      return <a-menu-item key={navigation.routeName}>{ navigation.title }</a-menu-item>
+      return (
+        <a-menu-item
+          key={navigation.routeName}
+          v-slots={{ default: () => renderSubMenuSlot(navigation) }}
+        />
+      )
     }
 
     return null
@@ -50,16 +57,14 @@ const renderNavigationMenu = (navigationMenu = []) => (
 export default {
   render() {
     return (
-      <>
-        <a-menu
-          theme="dark" // 没有像 V2 版本一样没有设置 v-bind="$attrs" 但是也会覆盖
-          mode="inline"
-        >
-          {
-            renderNavigationMenu(this.navigationMenu)
-          }
-        </a-menu>
-      </>
+      <a-menu
+        theme="dark" // 没有像 V2 版本一样没有设置 v-bind="$attrs" 但是也会覆盖
+        mode="inline"
+      >
+        {
+          renderNavigationMenu(this.navigationMenu)
+        }
+      </a-menu>
     )
   },
   name: 'TheNavigation',
