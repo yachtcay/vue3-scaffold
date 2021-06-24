@@ -1,11 +1,5 @@
 <script>
 import { mapState } from 'vuex'
-import {
-  MailOutlined,
-  QqOutlined,
-  AppstoreOutlined,
-  SettingOutlined
-} from '@ant-design/icons-vue'
 
 const NAVIGATION_TYPE = {
   CATALOG: 'catalog',
@@ -69,10 +63,6 @@ export default {
   },
   name: 'TheNavigation',
   components: {
-    MailOutlined,
-    QqOutlined,
-    AppstoreOutlined,
-    SettingOutlined
   },
   computed: {
     ...mapState('system', {
