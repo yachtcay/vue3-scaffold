@@ -1,5 +1,5 @@
 # vue3-scaffold
-按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架，不接受 PR，不定期更新，优先更新我的 [Github](https://github.com/rbackrock/vue3-scaffold)
+按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架，不接受 PR，不定期更新，主要用于交流学习
 
 # TODO
 布局配置参考 Ant Design Pro 实现
