@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .side-menu-main-layout-container {
     color: #fff;
     height: 100vh;

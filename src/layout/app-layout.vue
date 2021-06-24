@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .main-layout {
     // 自定义滚动条样式，只支持 webkit 浏览器
     .ant-layout-sider-children ::-webkit-scrollbar {
