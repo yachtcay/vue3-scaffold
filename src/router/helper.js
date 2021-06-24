@@ -1,35 +1,26 @@
-import {
-  MailOutlined
-} from '@ant-design/icons-vue'
+import * as utils from '@/utils/helper'
+import { requiresAuthRoutes } from './router-table'
 
-// 获取服务端拥有的路由权限 MenuName 值变为一维数组的形式
-export const getRspMenuTableKeys = (rspMenuTable = []) => {
-  const keys = []
+// 使导航菜单附加图标组件
+function attachIcon(pickIconMapper, rspMenuTable) {
   for (let i = 0; i < rspMenuTable.length; i++) {
-    const currentMenu = rspMenuTable[i]
-
-    if ('MenuName' in currentMenu) {
-      keys.push(currentMenu.MenuName)
-    }
-
-    if ('children' in currentMenu && currentMenu.children.length > 0) {
-      keys.push(...getRspMenuTableKeys(currentMenu.children))
-    }
-  }
-
-  return keys
-}
-
-export const attachIcon = (data) => {
-  for (let i = 0; i < data.length; i++) {
-    const current = data[i]
-
-    current.componentOfIcon = MailOutlined
+    const current = rspMenuTable[i]
+    current.icon = pickIconMapper[current.routeName] || null
 
     if ('children' in current && current.children.length > 0) {
-      attachIcon(current.children)
+      attachIcon(pickIconMapper, current.children)
     }
   }
 
-  return data
+  return rspMenuTable
+}
+
+// 获取服务端拥有的路由权限 MenuName 值变为一维数组的形式
+export const getRspMenuTableKeys = (rspMenuTable = []) => utils.pickPropertyOfTree(rspMenuTable, 'routeName', 'title')
+
+// 构成导航菜单，其中从路由表中附加图标组件
+export const makeNavigationMenu = (rspMenuTable = []) => {
+  const routeTable = requiresAuthRoutes
+  const pickIconMapper = utils.pickPropertyOfTree(routeTable, 'icon', 'name')
+  return attachIcon(pickIconMapper, rspMenuTable)
 }

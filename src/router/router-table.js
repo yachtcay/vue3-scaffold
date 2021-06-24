@@ -3,6 +3,9 @@
  * https://next.router.vuejs.org/zh/guide/essentials/route-matching-syntax.html#%E5%9C%A8%E5%8F%82%E6%95%B0%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AD%A3%E5%88%99
  */
 
+import {
+  StarOutlined
+} from '@ant-design/icons-vue'
 import AppLayout from '@/layout/app-layout'
 import NotFoundError from '@/views/features/404'
 import Login from '@/views/login'
@@ -70,6 +73,7 @@ const example = [
       title: '示例'
     },
     component: AppLayout,
+    icon: StarOutlined,
     redirect: {
       name: 'Example1'
     },
@@ -80,7 +84,8 @@ const example = [
         meta: {
           title: '示例1'
         },
-        component: () => import('@/views/business/example/example1')
+        component: () => import('@/views/business/example/example1'),
+        icon: StarOutlined
       },
       {
         path: 'example2',
@@ -88,7 +93,8 @@ const example = [
         meta: {
           title: '示例2'
         },
-        component: () => import('@/views/business/example/example2')
+        component: () => import('@/views/business/example/example2'),
+        icon: StarOutlined
       },
       {
         path: 'example3',
@@ -96,7 +102,8 @@ const example = [
         meta: {
           title: '示例3'
         },
-        component: () => import('@/views/business/example/example3')
+        component: () => import('@/views/business/example/example3'),
+        icon: StarOutlined
       },
       {
         path: 'example4',
@@ -106,6 +113,7 @@ const example = [
           layout: true
         },
         component: () => import('@/views/business/example/example4/layout'),
+        icon: StarOutlined,
         redirect: {
           name: 'Example4List'
         },

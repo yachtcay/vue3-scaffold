@@ -1,5 +1,5 @@
 import * as api from '@/api/system'
-import { getRspMenuTableKeys, attachIcon } from '@/router/helper'
+import { getRspMenuTableKeys, makeNavigationMenu } from '@/router/helper'
 
 const state = () => ({
   navigationMenu: [],
@@ -26,7 +26,7 @@ const actions = {
   async buildNavigationMenu({ commit }) {
     try {
       const { data } = await api.queryMenu()
-      commit('SET_NAVIGATION_MENU', attachIcon(data))
+      commit('SET_NAVIGATION_MENU', makeNavigationMenu(data))
       commit('SET_REQUIRES_AUTH_MENU_OF_KEYS', getRspMenuTableKeys(data))
 
       return Promise.resolve(data)

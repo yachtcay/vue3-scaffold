@@ -29,3 +29,48 @@ export const debounce = (cb, millisecond = 300, opts = {
 }) => _.debounce(function (...args) {
   cb && cb.call(this, ...args)
 }, millisecond, opts)
+
+/**
+ * 获取树结构指定属性的一维数组，支持数组和对象，如果传入唯一属性，返回的结果则是对象
+ * @param {Array} tree 树类型的数据
+ * @param {String} pickPropertyName 拾取属性的名称
+ * @param {String} uniqueProperty 当前树节点唯一属性的名称
+ * @param {String} childrenName 子节点属性的名称
+ * @returns 拾取的属性一位数组或者对象
+ */
+export const pickPropertyOfTree = (tree = [], pickPropertyName, uniqueProperty = '', childrenName = 'children') => {
+  const isUniqueProperty = !!uniqueProperty
+  const properties = isUniqueProperty ? {} : []
+
+  for (let i = 0; i < tree.length; i++) {
+    const current = tree[i]
+
+    if (pickPropertyName in current) {
+      if (isUniqueProperty) {
+        properties[current[uniqueProperty]] = current[pickPropertyName]
+      } else {
+        properties.push(current[pickPropertyName])
+      }
+    }
+
+    if (childrenName in current && current[childrenName].length > 0) {
+      if (isUniqueProperty) {
+        _.assign(properties, pickPropertyOfTree(
+          current[childrenName],
+          pickPropertyName,
+          uniqueProperty,
+          childrenName
+        ))
+      } else {
+        properties.push(...pickPropertyOfTree(
+          current[childrenName],
+          pickPropertyName,
+          uniqueProperty,
+          childrenName
+        ))
+      }
+    }
+  }
+
+  return properties
+}
