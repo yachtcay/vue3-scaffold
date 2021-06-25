@@ -6,6 +6,12 @@ module.exports = [
       code: 20000,
       data: [
         {
+          routeName: 'Home',
+          title: '首页',
+          type: 'menu',
+          children: []
+        },
+        {
           routeName: 'Example',
           title: 'Example',
           type: 'catalog',

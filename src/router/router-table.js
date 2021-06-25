@@ -33,6 +33,19 @@ const base = [
     }
   },
   {
+    path: '/:pathMatch(.*)*',
+    redirect: {
+      name: 'NotFound'
+    },
+    meta: {
+      requiresAuth: false
+    }
+  }
+]
+
+// 首页
+const home = [
+  {
     path: '/',
     component: AppLayout,
     redirect: {
@@ -45,18 +58,10 @@ const base = [
         meta: {
           title: '首页'
         },
-        component: () => import('@/views/home')
+        component: () => import('@/views/home'),
+        icon: StarOutlined
       }
     ]
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: {
-      name: 'NotFound'
-    },
-    meta: {
-      requiresAuth: false
-    }
   }
 ]
 
@@ -140,7 +145,7 @@ const example = [
   }
 ]
 
-const requiresAuthRoutes = [...system, ...example]
+const requiresAuthRoutes = [...home, ...system, ...example]
 export {
   feature,
   base,
