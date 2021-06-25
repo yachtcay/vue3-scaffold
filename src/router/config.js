@@ -11,7 +11,7 @@ function hasAuthRoute(to) {
     return true
   }
 
-  return store.getters['system/authMenuKeys'].indexOf(to.name) !== -1
+  return to.name in store.getters['system/authMenuKeys']
 }
 
 /**
