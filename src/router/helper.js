@@ -15,7 +15,7 @@ function attachIcon(pickIconMapper, rspMenuTable) {
   return rspMenuTable
 }
 
-// 获取服务端拥有的路由权限 MenuName 值变为一维数组的形式
+// 获取服务端拥有的路由权限 MenuName 值变为对象的形式
 export const getRspMenuTableKeys = (rspMenuTable = []) => utils.pickPropertyOfTree(rspMenuTable, 'routeName', 'title')
 
 // 构成导航菜单，其中从路由表中附加图标组件
