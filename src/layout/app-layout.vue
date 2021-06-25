@@ -16,10 +16,6 @@ export default {
     NavigationTopLayout,
     NavigationMixLayout
   },
-  data() {
-    return {
-    }
-  },
   computed: {
     ...mapState('settings', {
       navigationComponent: (state) => {
@@ -31,8 +27,6 @@ export default {
         return componentsMapper[state.layoutType]
       }
     })
-  },
-  methods: {
   }
 }
 </script>
