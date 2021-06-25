@@ -30,6 +30,7 @@ module.exports = {
     "no-param-reassign": ["error", { "props": false }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "func-names": ["error", "never"],
-    "no-unused-expressions": ["error", { "allowShortCircuit": true }]
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "max-len": "off"
   }
 }
