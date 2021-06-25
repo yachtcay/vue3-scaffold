@@ -10,7 +10,7 @@ import NavigationTopLayout from './navigation-top-layout.vue'
 import NavigationMixLayout from './navigation-mix-layout.vue'
 
 export default {
-  name: 'MainLayout',
+  name: 'AppLayout',
   components: {
     NavigationSiderLayout,
     NavigationTopLayout,
