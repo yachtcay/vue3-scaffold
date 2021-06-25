@@ -9,16 +9,19 @@ import { useRoute, useRouter } from 'vue-router'
  * @param {String} currentMenuKey 当前菜单的 key 值
  * @return 当前菜单的父级分类 routeName
  */
-function findParentMenuKey(menu = [], currentMenuKey) {
+function findParentMenuKey(menu = [], currentMenuKey, levelCount = 0) {
   for (let i = 0; i < menu.length; i++) {
     const currentMenu = menu[i]
 
     if (currentMenu.routeName === currentMenuKey) {
-      return currentMenuKey
+      // 如果当前页没有父级分类则不添加进 openKeys 里
+      return levelCount === 0 ? null : currentMenuKey
     }
 
     if ('children' in currentMenu && currentMenu.children && currentMenu.children.length > 0) {
-      const nextParentMenuKey = findParentMenuKey(currentMenu.children, currentMenuKey)
+      const nowLevelCount = levelCount + 1
+      // eslint-disable-next-line max-len
+      const nextParentMenuKey = findParentMenuKey(currentMenu.children, currentMenuKey, nowLevelCount)
       if (nextParentMenuKey) {
         return currentMenu.routeName
       }
@@ -96,9 +99,9 @@ export default {
       // 高亮当前页面菜单
       selectedMenuKeys.value = [route.name]
       // 展开当前父级菜单
-      const currentOpenMenuKey = [findParentMenuKey(navigationMenu.value, route.name)]
+      const currentOpenMenuKey = findParentMenuKey(navigationMenu.value, route.name)
       if (currentOpenMenuKey) {
-        openMenuKeys.value = currentOpenMenuKey
+        openMenuKeys.value = [currentOpenMenuKey]
       }
     })
 
