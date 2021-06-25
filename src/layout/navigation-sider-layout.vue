@@ -14,9 +14,10 @@
         <menu-unfold-outlined
           v-if="collapsed"
           class="trigger"
+          :style="{ color: 'rgba(255, 255, 255, 0.65)' }"
           @click="() => (collapsed = !collapsed)"
         />
-        <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+        <menu-fold-outlined v-else class="trigger" :style="{ color: 'rgba(255, 255, 255, 0.65)' }" @click="() => (collapsed = !collapsed)" />
       </div>
     </a-layout-sider>
     <a-layout>
