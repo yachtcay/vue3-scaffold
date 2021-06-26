@@ -133,4 +133,21 @@ export default {
       }
     }
   }
+
+  @keyframes fade-in {
+    0% {
+      display: none;
+      opacity: 0;
+    }
+
+    99% {
+      display: none;
+      opacity: 0;
+    }
+
+    100% {
+      display: block;
+      opacity: 1;
+    }
+  }
 </style>
