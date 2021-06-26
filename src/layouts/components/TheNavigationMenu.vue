@@ -20,7 +20,6 @@ function findParentMenuKey(menu = [], currentMenuKey, levelCount = 0) {
 
     if ('children' in currentMenu && currentMenu.children && currentMenu.children.length > 0) {
       const nowLevelCount = levelCount + 1
-      // eslint-disable-next-line max-len
       const nextParentMenuKey = findParentMenuKey(currentMenu.children, currentMenuKey, nowLevelCount)
       if (nextParentMenuKey) {
         return currentMenu.routeName
@@ -63,7 +62,7 @@ const Menu = (props) => {
       if (navigation.type === NAVIGATION_TYPE.CATALOG) {
         return (
           <a-sub-menu
-            key={navigation.id}
+            key={navigation.routeName}
             v-slots={{ title: () => <MenuSlot navigation={navigation} /> }}
           >
             <Menu menu={ navigation.children } />
@@ -74,7 +73,7 @@ const Menu = (props) => {
       if (navigation.type === NAVIGATION_TYPE.GROUP) {
         return (
           <a-menu-item-group
-            key={navigation.id}
+            key={navigation.routeName}
             v-slots={{ title: () => <MenuSlot navigation={navigation} /> }}
           >
             <Menu menu={ navigation.children } />
@@ -85,7 +84,7 @@ const Menu = (props) => {
       if (navigation.type === NAVIGATION_TYPE.MENU) {
         return (
           <a-menu-item
-            key={navigation.id}
+            key={navigation.routeName}
             v-slots={{ default: () => <MenuSlot navigation={ navigation } /> }}
             onClick={ () => router.push({ name: navigation.routeName }) }
           />
@@ -109,7 +108,11 @@ export default {
 
     onMounted(() => {
       // 高亮当前页面菜单
-      selectedMenuKeys.value = [route.name]
+      const findCurrentRoute = route.matched.reverse().find((item) => store.getters['system/navigationOnlyMenu'].indexOf(item.name) !== -1)
+      if (findCurrentRoute.name) {
+        selectedMenuKeys.value = [findCurrentRoute.name]
+      }
+
       // 展开当前父级菜单
       const currentOpenMenuKey = findParentMenuKey(navigationMenu.value, route.name)
       if (currentOpenMenuKey) {
