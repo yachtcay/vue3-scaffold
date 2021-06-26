@@ -10,24 +10,20 @@ import AppLayout from '@/layout/app-layout'
 import NotFoundError from '@/views/features/404'
 import Login from '@/views/login'
 
-// feature
-const feature = [
-  {
-    path: '/404',
-    name: 'NotFound',
-    component: NotFoundError,
-    meta: {
-      requiresAuth: false
-    }
-  }
-]
-
 // 基本路由
 const base = [
   {
     path: '/login',
     name: 'Login',
     component: Login,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: '/404',
+    name: 'NotFound',
+    component: NotFoundError,
     meta: {
       requiresAuth: false
     }
@@ -140,6 +136,15 @@ const example = [
             component: () => import('@/views/business/example/example4/detail.vue')
           }
         ]
+      },
+      {
+        path: 'example5',
+        name: 'Example5',
+        meta: {
+          title: '示例51'
+        },
+        component: () => import('@/views/business/example/example1.vue'),
+        icon: StarOutlined
       }
     ]
   }
@@ -147,7 +152,6 @@ const example = [
 
 const requiresAuthRoutes = [...home, ...system, ...example]
 export {
-  feature,
   base,
   requiresAuthRoutes
 }
