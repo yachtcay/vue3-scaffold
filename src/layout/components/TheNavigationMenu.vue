@@ -33,7 +33,8 @@ function findParentMenuKey(menu = [], currentMenuKey, levelCount = 0) {
 
 const NAVIGATION_TYPE = {
   CATALOG: 'catalog',
-  MENU: 'menu'
+  MENU: 'menu',
+  GROUP: 'group'
 }
 
 const MenuIcon = (props, context) => (
@@ -67,6 +68,17 @@ const Menu = (props) => {
           >
             <Menu menu={ navigation.children } />
           </a-sub-menu>
+        )
+      }
+
+      if (navigation.type === NAVIGATION_TYPE.GROUP) {
+        return (
+          <a-menu-item-group
+            key={navigation.id}
+            v-slots={{ title: () => <MenuSlot navigation={navigation} /> }}
+          >
+            <Menu menu={ navigation.children } />
+          </a-menu-item-group>
         )
       }
 
