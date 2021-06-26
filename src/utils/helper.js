@@ -47,7 +47,9 @@ export const pickPropertyOfTree = (tree = [], pickPropertyName, uniqueProperty =
 
     if (pickPropertyName in current) {
       if (isUniqueProperty) {
-        properties[current[uniqueProperty]] = current[pickPropertyName]
+        if (current[uniqueProperty]) {
+          properties[current[uniqueProperty]] = current[pickPropertyName]
+        }
       } else {
         properties.push(current[pickPropertyName])
       }
