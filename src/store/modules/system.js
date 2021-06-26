@@ -1,5 +1,5 @@
 import * as api from '@/api/system'
-import { getRspMenuTableKeys, makeNavigationMenu } from '@/router/helper'
+import { getRspMenuTableKeys, makeNavigationMenu, getNavigationOnlyMenu } from '@/router/helper'
 
 const state = () => ({
   navigationMenu: [],
@@ -9,6 +9,10 @@ const state = () => ({
 const getters = {
   authMenuKeys(state) {
     return state.requiresAuthMenuOfKeys
+  },
+
+  navigationOnlyMenu(state) {
+    return getNavigationOnlyMenu(state.navigationMenu)
   }
 }
 

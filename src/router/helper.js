@@ -15,6 +15,23 @@ function attachIcon(pickIconMapper, rspMenuTable) {
   return rspMenuTable
 }
 
+function getOnlyMenu(menu) {
+  const menus = []
+  for (let i = 0; i < menu.length; i++) {
+    const currentMenu = menu[i]
+
+    if (currentMenu.type === 'menu') {
+      menus.push(currentMenu.routeName)
+    }
+
+    if (currentMenu.type !== 'menu' || (currentMenu.type === 'menu' && 'children' in currentMenu && currentMenu.children.length === 0)) {
+      menus.push(...getOnlyMenu(currentMenu.children))
+    }
+  }
+
+  return menus
+}
+
 // 获取服务端拥有的路由权限 MenuName 值变为对象的形式
 export const getRspMenuTableKeys = (rspMenuTable = []) => utils.pickPropertyOfTree(rspMenuTable, 'routeName', 'routeName')
 
@@ -24,3 +41,6 @@ export const makeNavigationMenu = (rspMenuTable = []) => {
   const pickIconMapper = utils.pickPropertyOfTree(routeTable, 'icon', 'name')
   return attachIcon(pickIconMapper, rspMenuTable)
 }
+
+// 为了菜单导航，只获得 type 为 menu 的 routenName 一维数组
+export const getNavigationOnlyMenu = (navigationMenu = []) => getOnlyMenu(navigationMenu)
