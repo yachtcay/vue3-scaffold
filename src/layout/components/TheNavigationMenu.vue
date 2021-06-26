@@ -62,7 +62,7 @@ const Menu = (props) => {
       if (navigation.type === NAVIGATION_TYPE.CATALOG) {
         return (
           <a-sub-menu
-            key={navigation.routeName}
+            key={navigation.id}
             v-slots={{ title: () => <MenuSlot navigation={navigation} /> }}
           >
             <Menu menu={ navigation.children } />
@@ -73,7 +73,7 @@ const Menu = (props) => {
       if (navigation.type === NAVIGATION_TYPE.MENU) {
         return (
           <a-menu-item
-            key={navigation.routeName}
+            key={navigation.id}
             v-slots={{ default: () => <MenuSlot navigation={ navigation } /> }}
             onClick={ () => router.push({ name: navigation.routeName }) }
           />
