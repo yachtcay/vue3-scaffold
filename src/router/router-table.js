@@ -6,7 +6,7 @@
 import {
   StarOutlined
 } from '@ant-design/icons-vue'
-import AppLayout from '@/layout/app-layout'
+import AppLayout from '@/layouts/app-layout'
 import NotFoundError from '@/views/features/404'
 import Login from '@/views/login'
 
