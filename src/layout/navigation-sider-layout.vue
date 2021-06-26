@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  ::v-deep .ant-layout-sider-children {
+  :deep(.ant-layout-sider-children) {
       display: flex;
       flex-direction: column;
       height: 100%;
