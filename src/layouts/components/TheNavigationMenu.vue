@@ -4,30 +4,58 @@ import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 
 /**
- * 查找当前菜单的父级分类 routeName
- * @param {Array} menu 菜单列表
- * @param {String} currentMenuKey 当前菜单的 key 值
- * @return 当前菜单的父级分类 routeName
+ * 获取当前高亮菜单的 route name
+ * @param {Array} routeMatched route 中的 routeMatched
+ * @param {Array} navigationOnlyMenuFlat 扁平化过的菜单树
+ * @returns 当前高亮菜单的 route name
  */
-function findParentMenuKey(menu = [], currentMenuKey, levelCount = 0) {
-  for (let i = 0; i < menu.length; i++) {
-    const currentMenu = menu[i]
+function findCurrentMenuKeys(routeMatched = [], navigationOnlyMenuFlat = []) {
+  const currentKeys = []
+  for (let i = 0; i < routeMatched.length; i++) {
+    const currentRouteMatched = routeMatched[i]
 
-    if (currentMenu.routeName === currentMenuKey) {
-      // 如果当前页没有父级分类则不添加进 openKeys 里
-      return levelCount === 0 ? null : currentMenuKey
-    }
+    for (let n = 0; n < navigationOnlyMenuFlat.length; n++) {
+      const currentMenu = navigationOnlyMenuFlat[n]
 
-    if ('children' in currentMenu && currentMenu.children && currentMenu.children.length > 0) {
-      const nowLevelCount = levelCount + 1
-      const nextParentMenuKey = findParentMenuKey(currentMenu.children, currentMenuKey, nowLevelCount)
-      if (nextParentMenuKey) {
-        return currentMenu.routeName
+      if (currentRouteMatched.name === currentMenu.routeName) {
+        currentKeys.push(currentMenu.routeName)
       }
     }
   }
 
-  return null
+  return currentKeys
+}
+
+/**
+ * 获取当前菜单所处分类中，父类的 key
+ * @param {Array} navigationFlat 扁平化过的菜单树
+ * @param {Array} currentRouteName 当前路由的 name 值
+ * @returns 当前菜单所处分类中，父类的 key
+ */
+function findParentMenuKeys(navigationFlat = [], currentRouteName) {
+  // step1 找到当前路由在 navigationFlat 中的索引位置
+  let currentRouteNameIndex = 0
+  const parentMenuKeys = []
+
+  for (let i = 0; i < navigationFlat.length; i++) {
+    const current = navigationFlat[i]
+    if (current.routeName === currentRouteName) {
+      currentRouteNameIndex = i
+      break
+    }
+  }
+
+  // step2 截取当前路由最小范围，反向查找 type 为 catalog 的路由，这就是要展开的父类菜单
+  const currentRouteRangeArray = navigationFlat.splice(0, currentRouteNameIndex)
+  for (let i = currentRouteRangeArray.length - 1; i >= 0; i--) {
+    const current = currentRouteRangeArray[i]
+    if (current.type === 'catalog') {
+      parentMenuKeys.push(current.routeName)
+      break
+    }
+  }
+
+  return parentMenuKeys
 }
 
 const NAVIGATION_TYPE = {
@@ -108,16 +136,13 @@ export default {
 
     onMounted(() => {
       // 高亮当前页面菜单
-      const findCurrentRoute = route.matched.reverse().find((item) => store.getters['system/navigationOnlyMenu'].indexOf(item.name) !== -1)
-      if (findCurrentRoute.name) {
-        selectedMenuKeys.value = [findCurrentRoute.name]
-      }
+      const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
+      const currentMenuKeys = findCurrentMenuKeys(route.matched.reverse(), navigationOnlyMenuFlat)
+      selectedMenuKeys.value = currentMenuKeys
 
       // 展开当前父级菜单
-      const currentOpenMenuKey = findParentMenuKey(navigationMenu.value, route.name)
-      if (currentOpenMenuKey) {
-        openMenuKeys.value = [currentOpenMenuKey]
-      }
+      const navigationFlat = store.getters['system/navigationFlat']
+      openMenuKeys.value = findParentMenuKeys(navigationFlat, route.name)
     })
 
     return () => (
