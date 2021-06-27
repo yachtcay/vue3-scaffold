@@ -150,7 +150,52 @@ const example = [
   }
 ]
 
-const requiresAuthRoutes = [...home, ...system, ...example]
+// business
+const business = [
+  {
+    path: '/business',
+    name: 'Business',
+    meta: {
+      title: '示例'
+    },
+    component: AppLayout,
+    icon: StarOutlined,
+    redirect: {
+      name: 'Business1'
+    },
+    children: [
+      {
+        path: 'business1',
+        name: 'Business1',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1'),
+        icon: StarOutlined
+      },
+      {
+        path: 'business2',
+        name: 'Business2',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1'),
+        icon: StarOutlined
+      },
+      {
+        path: 'business3',
+        name: 'Business3',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1'),
+        icon: StarOutlined
+      }
+    ]
+  }
+]
+
+const requiresAuthRoutes = [...home, ...system, ...example, ...business]
 export {
   base,
   requiresAuthRoutes
