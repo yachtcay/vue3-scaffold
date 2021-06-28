@@ -33,24 +33,25 @@ function findCurrentMenuKeys(routeMatched = [], navigationOnlyMenuFlat = []) {
  * @returns 当前菜单所处分类中，父类的 key
  */
 function findParentMenuKeys(navigationFlat = [], currentRouteName) {
-  // step1 找到当前路由在 navigationFlat 中的索引位置
-  let currentRouteNameIndex = 0
+  // 菜单展开的 keys
   const parentMenuKeys = []
+  // 记录菜单循环的路径
+  const menuPath = []
 
   for (let i = 0; i < navigationFlat.length; i++) {
     const current = navigationFlat[i]
-    if (current.routeName === currentRouteName) {
-      currentRouteNameIndex = i
-      break
-    }
-  }
+    menuPath.push(current)
 
-  // step2 截取当前路由最小范围，反向查找 type 为 catalog 的路由，这就是要展开的父类菜单
-  const currentRouteRangeArray = navigationFlat.splice(0, currentRouteNameIndex)
-  for (let i = currentRouteRangeArray.length - 1; i >= 0; i--) {
-    const current = currentRouteRangeArray[i]
-    if (current.type === 'catalog') {
-      parentMenuKeys.push(current.routeName)
+    // 当找到目标菜单位置以后，从找到菜单的位置根据菜单循环的路径反向查找找 type 为 catalog 的菜单记录下 key
+    if (current.routeName === currentRouteName) {
+      for (let n = menuPath.length - 1; n >= 0; n--) {
+        const currentMenu = menuPath[n]
+        if (currentMenu.type === 'catalog') {
+          parentMenuKeys.push(currentMenu.routeName)
+          break
+        }
+      }
+
       break
     }
   }
