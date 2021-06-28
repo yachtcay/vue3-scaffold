@@ -1,5 +1,5 @@
 <template>
-  <a-layout v-if="isSideMenu" class="side-menu-main-layout-container">
+  <a-layout class="side-menu-main-layout-container">
     <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible width="210">
       <div class="logo" :style="{ 'justify-content': collapsed ? 'center' : 'normal' }">
         <a href="#">
@@ -38,9 +38,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-import { layoutType as layoutTypeConsts } from '@/consts'
 import NavigationMenu from './components/TheNavigationMenu'
 
 export default {
@@ -49,13 +47,6 @@ export default {
     NavigationMenu,
     MenuUnfoldOutlined,
     MenuFoldOutlined
-  },
-  computed: {
-    ...mapState('settings', {
-      isSideMenu: (state) => state.layoutType === layoutTypeConsts.SIDE_MENU,
-      isTopMenu: (state) => state.layoutType === layoutTypeConsts.TOP_MENU,
-      isMixMenu: (state) => state.layoutType === layoutTypeConsts.MIX_MENU
-    })
   },
   data() {
     return {
