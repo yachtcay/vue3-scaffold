@@ -60,14 +60,31 @@ export default {
 
 <style lang="less" scoped>
   :deep(.ant-layout-sider-children) {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  :deep(.ant-layout-sider-children ::-webkit-scrollbar) {
+    width: 6px;
+    height: 6px;
+  }
+
+  :deep(.ant-layout-sider-children ::-webkit-scrollbar-thumb) {
+    background: hsla(0,0%,100%,.2);
+    border-radius: 3px;
+    box-shadow: inset 0 0 5px hsl(0deg 0% 100% / 5%);
+  }
+
+  :deep(.ant-layout-sider-children ::-webkit-scrollbar-track) {
+    background: hsla(0,0%,100%,.15);
+    border-radius: 3px;
+    box-shadow: inset 0 0 5px hsl(0deg 0% 100% / 5%);
+  }
 
   .side-menu-main-layout-container {
     color: #fff;
-    min-height: 100vh;
+    height: 100vh;
 
     .logo {
       position: relative;

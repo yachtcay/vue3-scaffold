@@ -32,23 +32,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .main-layout {
-    // 自定义滚动条样式，只支持 webkit 浏览器
-    .ant-layout-sider-children ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-
-    .ant-layout-sider-children ::-webkit-scrollbar-thumb {
-      background: hsla(0,0%,100%,.2);
-      border-radius: 3px;
-      box-shadow: inset 0 0 5px hsl(0deg 0% 100% / 5%);
-    }
-
-    .ant-layout-sider-children ::-webkit-scrollbar-track {
-      background: hsla(0,0%,100%,.15);
-      border-radius: 3px;
-      box-shadow: inset 0 0 5px hsl(0deg 0% 100% / 5%);
-    }
-  }
 </style>
