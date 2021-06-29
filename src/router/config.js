@@ -44,6 +44,7 @@ router.beforeEach(async (to) => {
   if (!user) {
     try {
       await store.dispatch('system/buildNavigationMenu')
+      await store.dispatch('system/buildDictionary')
       await store.dispatch('user/getUser')
 
       // 在有令牌的情况下，尝试路由登录页则跳转首页

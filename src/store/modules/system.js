@@ -8,7 +8,8 @@ import {
 
 const state = () => ({
   navigationMenu: [],
-  requiresAuthMenuOfKeys: []
+  requiresAuthMenuOfKeys: [],
+  dictionary: {}
 })
 
 const getters = {
@@ -22,7 +23,11 @@ const getters = {
 
   navigationFlat(state) {
     return getNavigationFlat(state.navigationMenu)
-  }
+  },
+
+  getDictionaryValue: (state) => (dictionaryTypeName, codeName) => state.dictionary[dictionaryTypeName].code[codeName].codeValue,
+
+  getDictionaryTypeMapper: (state) => (dictionaryTypeName) => state.dictionary[dictionaryTypeName].code
 }
 
 const mutations = {
@@ -32,6 +37,10 @@ const mutations = {
 
   SET_REQUIRES_AUTH_MENU_OF_KEYS(state, keys) {
     state.requiresAuthMenuOfKeys = keys
+  },
+
+  SET_DICTIONARY(state, dictionary) {
+    state.dictionary = dictionary
   }
 }
 
@@ -41,6 +50,35 @@ const actions = {
       const { data } = await api.queryMenu()
       commit('SET_NAVIGATION_MENU', makeNavigationMenu(data))
       commit('SET_REQUIRES_AUTH_MENU_OF_KEYS', getRspMenuTableKeys(data))
+
+      return Promise.resolve(data)
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  async buildDictionary({ commit }) {
+    try {
+      const { data } = await api.queryDictionary()
+      const dictionary = {}
+      for (let i = 0; i < data.length; i++) {
+        const current = data[i]
+
+        dictionary[current.typeName] = {
+          typeDescription: current.typeDescription,
+          code: {},
+          list: current.code
+        }
+
+        for (let n = 0; n < current.code.length; n++) {
+          const currentCode = current.code[n]
+          dictionary[current.typeName].code[currentCode.codeName] = {
+            codeDescription: currentCode.codeDescription,
+            codeValue: currentCode.codeValue
+          }
+        }
+      }
+      commit('SET_DICTIONARY', dictionary)
 
       return Promise.resolve(data)
     } catch (error) {
