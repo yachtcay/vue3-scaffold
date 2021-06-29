@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
+import * as utils from '@/utils/helper'
 
 /**
  * 获取当前高亮菜单的 route name
@@ -28,31 +29,15 @@ function findCurrentMenuKeys(routeMatched = [], navigationOnlyMenuFlat = []) {
 
 /**
  * 获取当前菜单所处分类中，父类的 key
- * @param {Array} navigationFlat 扁平化过的菜单树
- * @param {Array} currentRouteName 当前路由的 name 值
- * @returns 当前菜单所处分类中，父类的 key
+ * @param {Array} navigationPath 当前菜单的路径
+ * @returns 当前菜单所处分类中，父类的 key 集合
  */
-function findParentMenuKeys(navigationFlat = [], currentRouteName) {
-  // 菜单展开的 keys
+function findParentMenuKeys(navigationPath = []) {
   const parentMenuKeys = []
-  // 记录菜单循环的路径
-  const menuPath = []
-
-  for (let i = 0; i < navigationFlat.length; i++) {
-    const current = navigationFlat[i]
-    menuPath.push(current)
-
-    // 当找到目标菜单位置以后，从找到菜单的位置根据菜单循环的路径反向查找找 type 为 catalog 的菜单记录下 key
-    if (current.routeName === currentRouteName) {
-      for (let n = menuPath.length - 1; n >= 0; n--) {
-        const currentMenu = menuPath[n]
-        if (currentMenu.type === 'catalog') {
-          parentMenuKeys.push(currentMenu.routeName)
-          break
-        }
-      }
-
-      break
+  for (let i = 0; i < navigationPath.length; i++) {
+    const current = navigationPath[i]
+    if (current.type === 'catalog') {
+      parentMenuKeys.push(current.routeName)
     }
   }
 
@@ -142,8 +127,7 @@ export default {
       selectedMenuKeys.value = currentMenuKeys
 
       // 展开当前父级菜单
-      const navigationFlat = store.getters['system/navigationFlat']
-      openMenuKeys.value = findParentMenuKeys(navigationFlat, route.name)
+      openMenuKeys.value = findParentMenuKeys(utils.findTreeNodePath(store.state.system.navigationMenu, 'routeName', route.name))
     })
 
     return () => (
