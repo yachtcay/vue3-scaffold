@@ -88,6 +88,7 @@ export default {
         .header-menu {
           flex: 1 1 0%;
           min-width: 0;
+          overflow: hidden;
         }
 
         .header-control {

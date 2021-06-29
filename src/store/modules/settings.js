@@ -1,7 +1,7 @@
 import { layoutType } from '@/consts'
 
 const state = () => ({
-  layoutType: layoutType.SIDE_MENU
+  layoutType: layoutType.TOP_MENU
 })
 
 const getters = {

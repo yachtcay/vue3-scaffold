@@ -98,6 +98,111 @@ module.exports = [
               ]
             }
           ]
+        },
+        {
+          routeName: 'Business1',
+          title: 'Business1',
+          uniqueTag: 'Business1',
+          type: 'catalog',
+          children: [
+            {
+              routeName: 'Business11',
+              title: 'Business11',
+              uniqueTag: 'Business11',
+              type: 'menu',
+              children: []
+            }
+          ]
+        },
+        {
+          routeName: 'Business2',
+          title: 'Business2',
+          uniqueTag: 'Business2',
+          type: 'catalog',
+          children: [
+            {
+              routeName: 'Business21',
+              title: 'Business11',
+              uniqueTag: 'Business21',
+              type: 'menu',
+              children: []
+            }
+          ]
+        },
+        {
+          routeName: 'Business3',
+          title: '业务代码',
+          uniqueTag: 'Business3',
+          type: 'catalog',
+          children: [
+            {
+              routeName: 'Business31',
+              title: 'Business31',
+              uniqueTag: 'Business31',
+              type: 'menu',
+              children: []
+            }
+          ]
+        },
+        {
+          routeName: 'Business4',
+          title: 'Business4',
+          uniqueTag: 'Business4',
+          type: 'catalog',
+          children: [
+            {
+              routeName: 'Business41',
+              title: 'Business41',
+              uniqueTag: 'Business41',
+              type: 'menu',
+              children: []
+            }
+          ]
+        },
+        {
+          routeName: 'Business5',
+          title: 'Business5',
+          uniqueTag: 'Business5',
+          type: 'catalog',
+          children: [
+            {
+              routeName: 'Business51',
+              title: 'Business51',
+              uniqueTag: 'Business51',
+              type: 'menu',
+              children: []
+            }
+          ]
+        },
+        {
+          routeName: 'Business6',
+          title: 'Business6',
+          uniqueTag: 'Business6',
+          type: 'catalog',
+          children: [
+            {
+              routeName: 'Business61',
+              title: 'Business61',
+              uniqueTag: 'Business61',
+              type: 'menu',
+              children: []
+            }
+          ]
+        },
+        {
+          routeName: 'Business7',
+          title: 'Business7',
+          uniqueTag: 'Business7',
+          type: 'catalog',
+          children: [
+            {
+              routeName: 'Business71',
+              title: 'Business71',
+              uniqueTag: 'Business71',
+              type: 'menu',
+              children: []
+            }
+          ]
         }
       ],
       message: null,

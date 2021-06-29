@@ -1,8 +1,34 @@
 <script>
-import { ref, computed, onMounted } from 'vue'
+import {
+  ref,
+  onMounted,
+  nextTick
+} from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 import * as utils from '@/utils/helper'
+import * as consts from '@/consts'
+
+function findSplitIndex(menuRef) {
+  const menuUlElement = menuRef.parentElement
+  const menuLiElement = menuUlElement.querySelectorAll('li')
+  const menuUlWidth = menuUlElement.offsetWidth
+  let menuLiTotalWidth = 0
+  let splitIndex = 0
+
+  for (let i = 0; i < menuLiElement.length; i++) {
+    menuLiTotalWidth += menuLiElement[i].offsetWidth
+
+    if (menuLiTotalWidth > menuUlWidth) {
+      if (i > 1) {
+        splitIndex = i - 1
+      }
+      break
+    }
+  }
+
+  return splitIndex
+}
 
 /**
  * 获取当前高亮菜单的 route name
@@ -111,22 +137,35 @@ export default {
   setup() {
     const route = useRoute()
     const store = useStore()
-    const navigationMenu = computed(() => store.state.system.navigationMenu)
+    const navigationMenu = ref(store.getters['system/navigationMenu']) // computed(() => store.state.system.navigationMenu)
     const selectedMenuKeys = ref([])
     const openMenuKeys = ref([])
     const navigationMenuMapper = store.getters['system/getDictionaryTypeMapper']('navigationMenuType')
+    const menuRef = ref(null)
 
-    onMounted(() => {
+    onMounted(async () => {
+      // 如果是 top 布局，那么重新组织 menu 结构
+      await nextTick()
+      if (store.state.settings.layoutType === consts.layoutType.TOP_MENU) {
+        const splitIndex = findSplitIndex(menuRef.value)
+        if (splitIndex !== 0) {
+          navigationMenu.value = store.getters['system/navigationMenuForTopLayout'](splitIndex)
+        }
+      }
+
       // 高亮当前页面菜单
       const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
       const currentMenuKeys = findCurrentMenuKeys(route.matched.reverse(), navigationOnlyMenuFlat)
       selectedMenuKeys.value = currentMenuKeys
 
       // 展开当前父级菜单
-      openMenuKeys.value = findParentMenuKeys(
-        utils.findTreeNodePath(store.state.system.navigationMenu, 'routeName', route.name),
-        store.getters['system/getDictionaryValue']('navigationMenuType', 'catalog')
-      )
+      if (store.state.settings.layoutType === consts.layoutType.SIDE_MENU
+      || store.state.settings.layoutType === consts.layoutType.MIX_MENU) {
+        openMenuKeys.value = findParentMenuKeys(
+          utils.findTreeNodePath(store.state.system.navigationMenu, 'routeName', route.name),
+          store.getters['system/getDictionaryValue']('navigationMenuType', 'catalog')
+        )
+      }
     })
 
     return () => (
@@ -135,7 +174,7 @@ export default {
         mode="inline"
         v-models={[[selectedMenuKeys.value, 'selectedKeys'], [openMenuKeys.value, 'openKeys']]}
       >
-        <Menu menu={ navigationMenu.value } navigationMenuMapper={ navigationMenuMapper } />
+        <Menu ref={menuRef} menu={ navigationMenu.value } navigationMenuMapper={ navigationMenuMapper } />
       </a-menu>
     )
   }
