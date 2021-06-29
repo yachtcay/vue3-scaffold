@@ -123,8 +123,10 @@ export default {
       selectedMenuKeys.value = currentMenuKeys
 
       // 展开当前父级菜单
-      openMenuKeys.value = findParentMenuKeys(utils.findTreeNodePath(store.state.system.navigationMenu, 'routeName', route.name),
-        store.getters['system/getDictionaryValue']('navigationMenuType', 'catalog'))
+      openMenuKeys.value = findParentMenuKeys(
+        utils.findTreeNodePath(store.state.system.navigationMenu, 'routeName', route.name),
+        store.getters['system/getDictionaryValue']('navigationMenuType', 'catalog')
+      )
     })
 
     return () => (
