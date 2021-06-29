@@ -32,22 +32,16 @@ function findCurrentMenuKeys(routeMatched = [], navigationOnlyMenuFlat = []) {
  * @param {Array} navigationPath 当前菜单的路径
  * @returns 当前菜单所处分类中，父类的 key 集合
  */
-function findParentMenuKeys(navigationPath = []) {
+function findParentMenuKeys(navigationPath = [], catelogTypeValue) {
   const parentMenuKeys = []
   for (let i = 0; i < navigationPath.length; i++) {
     const current = navigationPath[i]
-    if (current.type === 'catalog') {
+    if (current.type === catelogTypeValue) {
       parentMenuKeys.push(current.routeName)
     }
   }
 
   return parentMenuKeys
-}
-
-const NAVIGATION_TYPE = {
-  CATALOG: 'catalog',
-  MENU: 'menu',
-  GROUP: 'group'
 }
 
 const MenuIcon = (props, context) => (
@@ -70,32 +64,33 @@ const MenuSlot = (props) => {
 const Menu = (props) => {
   const router = useRouter()
   const navigationMenu = props.menu
+  const navigationMapper = props.navigationMenuMapper
 
   return (
     navigationMenu.map((navigation) => {
-      if (navigation.type === NAVIGATION_TYPE.CATALOG) {
+      if (navigation.type === navigationMapper.catalog.codeValue) {
         return (
           <a-sub-menu
             key={navigation.routeName}
             v-slots={{ title: () => <MenuSlot navigation={navigation} /> }}
           >
-            <Menu menu={ navigation.children } />
+            <Menu menu={ navigation.children } navigationMenuMapper={ navigationMapper } />
           </a-sub-menu>
         )
       }
 
-      if (navigation.type === NAVIGATION_TYPE.GROUP) {
+      if (navigation.type === navigationMapper.group.codeValue) {
         return (
           <a-menu-item-group
             key={navigation.routeName}
             v-slots={{ title: () => <MenuSlot navigation={navigation} /> }}
           >
-            <Menu menu={ navigation.children } />
+            <Menu menu={ navigation.children } navigationMenuMapper={ navigationMapper } />
           </a-menu-item-group>
         )
       }
 
-      if (navigation.type === NAVIGATION_TYPE.MENU) {
+      if (navigation.type === navigationMapper.menu.codeValue) {
         return (
           <a-menu-item
             key={navigation.routeName}
@@ -119,6 +114,7 @@ export default {
     const navigationMenu = computed(() => store.state.system.navigationMenu)
     const selectedMenuKeys = ref([])
     const openMenuKeys = ref([])
+    const navigationMenuMapper = store.getters['system/getDictionaryTypeMapper']('navigationMenuType')
 
     onMounted(() => {
       // 高亮当前页面菜单
@@ -127,7 +123,8 @@ export default {
       selectedMenuKeys.value = currentMenuKeys
 
       // 展开当前父级菜单
-      openMenuKeys.value = findParentMenuKeys(utils.findTreeNodePath(store.state.system.navigationMenu, 'routeName', route.name))
+      openMenuKeys.value = findParentMenuKeys(utils.findTreeNodePath(store.state.system.navigationMenu, 'routeName', route.name),
+        store.getters['system/getDictionaryValue']('navigationMenuType', 'catalog'))
     })
 
     return () => (
@@ -136,7 +133,7 @@ export default {
         mode="inline"
         v-models={[[selectedMenuKeys.value, 'selectedKeys'], [openMenuKeys.value, 'openKeys']]}
       >
-        <Menu menu={ navigationMenu.value } />
+        <Menu menu={ navigationMenu.value } navigationMenuMapper={ navigationMenuMapper } />
       </a-menu>
     )
   }
