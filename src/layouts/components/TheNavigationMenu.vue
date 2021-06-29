@@ -9,6 +9,11 @@ import { useRoute, useRouter } from 'vue-router'
 import * as utils from '@/utils/helper'
 import * as consts from '@/consts'
 
+/**
+ * 根据布局样式宽度获得分隔菜单时候的分隔索引
+ * @param {Object} 菜单 ref 值
+ * @return 获取最佳分隔菜单的索引
+ */
 function findSplitIndex(menuRef) {
   const menuUlElement = menuRef.parentElement
   const menuLiElement = menuUlElement.querySelectorAll('li')
