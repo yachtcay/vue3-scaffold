@@ -22,12 +22,19 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0;">
-        <menu-unfold-outlined
-          v-if="collapsed"
-          class="trigger"
-          @click="() => (collapsed = !collapsed)"
-        />
-        <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+        <div class="header-wrapper">
+          <div class="header-leff">
+            <menu-unfold-outlined
+              v-if="collapsed"
+              class="trigger"
+              @click="() => (collapsed = !collapsed)"
+            />
+            <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+          </div>
+          <div class="header"></div>
+          <div class="header-right">
+          </div>
+        </div>
       </a-layout-header>
       <a-layout-content>
         <router-view></router-view>
