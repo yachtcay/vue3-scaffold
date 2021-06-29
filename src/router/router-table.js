@@ -3,9 +3,6 @@
  * https://next.router.vuejs.org/zh/guide/essentials/route-matching-syntax.html#%E5%9C%A8%E5%8F%82%E6%95%B0%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E6%AD%A3%E5%88%99
  */
 
-import {
-  StarOutlined
-} from '@ant-design/icons-vue'
 import AppLayout from '@/layouts/app-layout'
 import NotFoundError from '@/views/features/404'
 import Login from '@/views/login'
@@ -54,8 +51,7 @@ const home = [
         meta: {
           title: '首页'
         },
-        component: () => import('@/views/home'),
-        icon: StarOutlined
+        component: () => import('@/views/home')
       }
     ]
   }
@@ -74,7 +70,6 @@ const example = [
       title: '示例'
     },
     component: AppLayout,
-    icon: StarOutlined,
     redirect: {
       name: 'Example1'
     },
@@ -85,8 +80,7 @@ const example = [
         meta: {
           title: '示例1'
         },
-        component: () => import('@/views/business/example/example1'),
-        icon: StarOutlined
+        component: () => import('@/views/business/example/example1')
       },
       {
         path: 'example2',
@@ -94,8 +88,7 @@ const example = [
         meta: {
           title: '示例2'
         },
-        component: () => import('@/views/business/example/example2'),
-        icon: StarOutlined
+        component: () => import('@/views/business/example/example2')
       },
       {
         path: 'example3',
@@ -103,8 +96,7 @@ const example = [
         meta: {
           title: '示例3'
         },
-        component: () => import('@/views/business/example/example3'),
-        icon: StarOutlined
+        component: () => import('@/views/business/example/example3')
       },
       {
         path: 'example4',
@@ -114,7 +106,6 @@ const example = [
           layout: true
         },
         component: () => import('@/views/business/example/example4/layout'),
-        icon: StarOutlined,
         redirect: {
           name: 'Example4List'
         },
@@ -143,8 +134,7 @@ const example = [
         meta: {
           title: '示例51'
         },
-        component: () => import('@/views/business/example/example1.vue'),
-        icon: StarOutlined
+        component: () => import('@/views/business/example/example1.vue')
       }
     ]
   }
@@ -159,7 +149,6 @@ const business = [
       title: '示例'
     },
     component: AppLayout,
-    icon: StarOutlined,
     redirect: {
       name: 'Business1'
     },
@@ -170,8 +159,7 @@ const business = [
         meta: {
           title: '示例1'
         },
-        component: () => import('@/views/business/example/example1'),
-        icon: StarOutlined
+        component: () => import('@/views/business/example/example1')
       },
       {
         path: 'business2',
@@ -179,8 +167,7 @@ const business = [
         meta: {
           title: '示例1'
         },
-        component: () => import('@/views/business/example/example1'),
-        icon: StarOutlined
+        component: () => import('@/views/business/example/example1')
       },
       {
         path: 'business3',
@@ -188,14 +175,193 @@ const business = [
         meta: {
           title: '示例1'
         },
-        component: () => import('@/views/business/example/example1'),
-        icon: StarOutlined
+        component: () => import('@/views/business/example/example1')
       }
     ]
   }
 ]
 
-const requiresAuthRoutes = [...home, ...system, ...example, ...business]
+const business1 = [
+  {
+    path: '/business1',
+    name: 'Business1',
+    meta: {
+      title: '示例'
+    },
+    component: AppLayout,
+    redirect: {
+      name: 'Business11'
+    },
+    children: [
+      {
+        path: 'business11',
+        name: 'Business11',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1')
+      }
+    ]
+  }
+]
+
+const business2 = [
+  {
+    path: '/business2',
+    name: 'Business2',
+    meta: {
+      title: '示例'
+    },
+    component: AppLayout,
+    redirect: {
+      name: 'Business21'
+    },
+    children: [
+      {
+        path: 'business21',
+        name: 'Business21',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1')
+      }
+    ]
+  }
+]
+
+const business3 = [
+  {
+    path: '/business3',
+    name: 'Business3',
+    meta: {
+      title: '示例'
+    },
+    component: AppLayout,
+    redirect: {
+      name: 'Business31'
+    },
+    children: [
+      {
+        path: 'business31',
+        name: 'Business31',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1')
+      }
+    ]
+  }
+]
+
+const business4 = [
+  {
+    path: '/business4',
+    name: 'Business4',
+    meta: {
+      title: '示例'
+    },
+    component: AppLayout,
+    redirect: {
+      name: 'Business41'
+    },
+    children: [
+      {
+        path: 'business41',
+        name: 'Business41',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1')
+      }
+    ]
+  }
+]
+
+const business5 = [
+  {
+    path: '/business5',
+    name: 'Business5',
+    meta: {
+      title: '示例'
+    },
+    component: AppLayout,
+    redirect: {
+      name: 'Business51'
+    },
+    children: [
+      {
+        path: 'business51',
+        name: 'Business51',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1')
+      }
+    ]
+  }
+]
+
+const business6 = [
+  {
+    path: '/business6',
+    name: 'Business6',
+    meta: {
+      title: '示例'
+    },
+    component: AppLayout,
+    redirect: {
+      name: 'Business61'
+    },
+    children: [
+      {
+        path: 'business61',
+        name: 'Business61',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1')
+      }
+    ]
+  }
+]
+
+const business7 = [
+  {
+    path: '/business7',
+    name: 'Business7',
+    meta: {
+      title: '示例'
+    },
+    component: AppLayout,
+    redirect: {
+      name: 'Business71'
+    },
+    children: [
+      {
+        path: 'business71',
+        name: 'Business71',
+        meta: {
+          title: '示例1'
+        },
+        component: () => import('@/views/business/example/example1')
+      }
+    ]
+  }
+]
+
+const requiresAuthRoutes = [
+  ...home,
+  ...system,
+  ...example,
+  ...business,
+  ...business1,
+  ...business2,
+  ...business3,
+  ...business4,
+  ...business5,
+  ...business6,
+  ...business7
+]
 export {
   base,
   requiresAuthRoutes

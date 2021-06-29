@@ -13,6 +13,26 @@ const state = () => ({
 })
 
 const getters = {
+  navigationMenu(state) {
+    return state.navigationMenu
+  },
+
+  navigationMenuForTopLayout: (state) => (splitIndex) => {
+    const navigationMenuOrigin = state.navigationMenu
+    const splitLeft = [...navigationMenuOrigin].splice(0, splitIndex)
+    const splitRight = [...navigationMenuOrigin].splice(splitIndex, navigationMenuOrigin.length)
+
+    splitLeft.push({
+      routeName: 'TopLayoutMore',
+      title: '...',
+      uniqueTag: 'More',
+      type: 'catalog',
+      children: splitRight
+    })
+
+    return splitLeft
+  },
+
   authMenuKeys(state) {
     return state.requiresAuthMenuOfKeys
   },
