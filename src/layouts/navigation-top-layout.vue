@@ -96,7 +96,7 @@ export default {
         }
 
         .header-control {
-          min-width: 208px;
+          min-width: 180px;
           text-align: right;
           color: #fff;
         }

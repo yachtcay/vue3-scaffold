@@ -79,7 +79,7 @@
     <template #overlay>
       <a-menu>
         <a-menu-item @click="handleLogout">
-          <span>登出</span>
+          <span><LogoutOutlined style="margin-right: 8px;" />退出登录</span>
         </a-menu-item>
       </a-menu>
     </template>
@@ -94,7 +94,8 @@ import {
   BellOutlined,
   NotificationTwoTone,
   MessageTwoTone,
-  DownOutlined
+  DownOutlined,
+  LogoutOutlined
 } from '@ant-design/icons-vue'
 
 export default {
@@ -103,7 +104,8 @@ export default {
     BellOutlined,
     NotificationTwoTone,
     MessageTwoTone,
-    DownOutlined
+    DownOutlined,
+    LogoutOutlined
   },
   setup() {
     const store = useStore()
