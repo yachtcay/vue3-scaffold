@@ -14,7 +14,9 @@
           <div class="header-menu">
             <navigation-menu mode="horizontal" />
           </div>
-          <div class="header-control"></div>
+          <div class="header-control">
+            <header-control />
+          </div>
         </div>
       </div>
     </a-layout-header>
@@ -25,11 +27,13 @@
 
 <script>
 import NavigationMenu from './components/TheNavigationMenu'
+import HeaderControl from './components/TheHeaderControl.vue'
 
 export default {
   name: 'NavigationTopLayout',
   components: {
-    NavigationMenu
+    NavigationMenu,
+    HeaderControl
   }
 }
 </script>
@@ -93,6 +97,8 @@ export default {
 
         .header-control {
           min-width: 208px;
+          text-align: right;
+          color: #fff;
         }
       }
     }
