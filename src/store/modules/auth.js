@@ -37,6 +37,18 @@ const actions = {
     } catch (error) {
       return Promise.reject(error)
     }
+  },
+
+  async logout({ commit }) {
+    try {
+      // TODO 可能要调用一些借口
+      commit('user/SET_USER', null, { root: true })
+      commit('SET_TOKEN', null)
+      auth.clearEnduranceTokenOfStorage()
+      return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
   }
 }
 

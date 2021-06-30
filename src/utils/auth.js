@@ -47,3 +47,7 @@ export const getEnduranceTokenOfStorage = () => {
 
   return null
 }
+
+export const clearEnduranceTokenOfStorage = () => {
+  storage.removeSession(TOKEN_NAME_OF_STORAGE)
+}
