@@ -138,7 +138,7 @@ const Menu = (props) => {
 
 // 递归菜单组件还是 jsx 好用
 export default {
-  name: 'TheNavigation',
+  name: 'NavigationMenu',
   setup() {
     const route = useRoute()
     const store = useStore()
