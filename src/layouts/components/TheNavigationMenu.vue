@@ -150,8 +150,8 @@ export default {
 
     onMounted(async () => {
       // 如果是 top 布局，那么重新组织 menu 结构
-      await nextTick()
       if (store.state.settings.layoutType === consts.layoutType.TOP_MENU) {
+        await nextTick()
         const splitIndex = findSplitIndex(menuRef.value)
         if (splitIndex !== 0) {
           navigationMenu.value = store.getters['system/navigationMenuForTopLayout'](splitIndex)
