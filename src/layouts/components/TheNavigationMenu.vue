@@ -2,38 +2,13 @@
 import {
   ref,
   onMounted,
+  onDeactivated,
   nextTick
 } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
 import * as utils from '@/utils/helper'
 import * as consts from '@/consts'
-
-/**
- * 根据布局样式宽度获得分隔菜单时候的分隔索引
- * @param {Object} 菜单 ref 值
- * @return 获取最佳分隔菜单的索引
- */
-function findSplitIndex(menuRef) {
-  const menuUlElement = menuRef.parentElement
-  const menuLiElement = menuUlElement.querySelectorAll('li')
-  const menuUlWidth = menuUlElement.offsetWidth
-  let menuLiTotalWidth = 0
-  let splitIndex = 0
-
-  for (let i = 0; i < menuLiElement.length; i++) {
-    menuLiTotalWidth += menuLiElement[i].offsetWidth
-
-    if (menuLiTotalWidth > menuUlWidth) {
-      if (i > 1) {
-        splitIndex = i - 1
-      }
-      break
-    }
-  }
-
-  return splitIndex
-}
 
 /**
  * 获取当前高亮菜单的 route name
@@ -147,15 +122,42 @@ export default {
     const openMenuKeys = ref([])
     const navigationMenuMapper = store.getters['system/getDictionaryTypeMapper']('navigationMenuType')
     const menuRef = ref(null)
+    // top layout
+    const menuLiWidth = []
+
+    const reBuildMenu = async () => {
+      await nextTick()
+      const menuUlWidth = menuRef.value.parentElement.offsetWidth
+      let splitIndex = 0
+
+      for (let i = 0, liTotalWidth = 0; i < menuLiWidth.length; i++) {
+        liTotalWidth += menuLiWidth[i]
+
+        if (liTotalWidth + 56 > menuUlWidth) {
+          if (i > 1) {
+            splitIndex = i
+          }
+
+          break
+        }
+      }
+
+      if (splitIndex !== 0) {
+        navigationMenu.value = store.getters['system/navigationMenuForTopLayout'](splitIndex)
+      }
+    }
 
     onMounted(async () => {
       // 如果是 top 布局，那么重新组织 menu 结构
       if (store.state.settings.layoutType === consts.layoutType.TOP_MENU) {
         await nextTick()
-        const splitIndex = findSplitIndex(menuRef.value)
-        if (splitIndex !== 0) {
-          navigationMenu.value = store.getters['system/navigationMenuForTopLayout'](splitIndex)
+        const liNodes = menuRef.value.parentElement.querySelectorAll('li')
+        for (let i = 0; i < liNodes.length; i++) {
+          menuLiWidth.push(liNodes[i].offsetWidth)
         }
+        reBuildMenu()
+
+        window.addEventListener('resize', reBuildMenu)
       }
 
       // 高亮当前页面菜单
@@ -170,6 +172,12 @@ export default {
           utils.findTreeNodePath(store.state.system.navigationMenu, 'routeName', route.name),
           store.getters['system/getDictionaryValue']('navigationMenuType', 'catalog')
         )
+      }
+    })
+
+    onDeactivated(() => {
+      if (store.state.settings.layoutType === consts.layoutType.TOP_MENU) {
+        window.removeEventListener('resize', reBuildMenu)
       }
     })
 
