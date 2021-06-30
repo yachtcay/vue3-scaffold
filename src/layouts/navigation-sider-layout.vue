@@ -32,7 +32,7 @@
           </div>
           <div class="header-part2"></div>
           <div class="header-part3">
-            <headerControl />
+            <header-control />
           </div>
         </div>
       </a-layout-header>
