@@ -20,20 +20,21 @@
         </div>
       </div>
     </a-layout-header>
-    <a-layout-content>Content</a-layout-content>
-    <a-layout-footer>Footer</a-layout-footer>
+    <main-content />
   </a-layout>
 </template>
 
 <script>
 import NavigationMenu from './components/TheNavigationMenu'
 import HeaderControl from './components/TheHeaderControl.vue'
+import MainContent from './components/TheMainContent.vue'
 
 export default {
   name: 'NavigationTopLayout',
   components: {
     NavigationMenu,
-    HeaderControl
+    HeaderControl,
+    MainContent
   }
 }
 </script>

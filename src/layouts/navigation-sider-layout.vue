@@ -36,18 +36,17 @@
           </div>
         </div>
       </a-layout-header>
-      <a-layout-content>
-        <router-view></router-view>
-      </a-layout-content>
-      <a-layout-footer>Footer</a-layout-footer>
+      <main-content />
     </a-layout>
   </a-layout>
 </template>
 
 <script>
+import { ref } from 'vue'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import NavigationMenu from './components/TheNavigationMenu'
 import HeaderControl from './components/TheHeaderControl.vue'
+import MainContent from './components/TheMainContent.vue'
 
 export default {
   name: 'NavigationSiderLayout',
@@ -55,14 +54,14 @@ export default {
     NavigationMenu,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
-    HeaderControl
+    HeaderControl,
+    MainContent
   },
-  data() {
+  setup() {
+    const collapsed = ref(false)
     return {
-      collapsed: false
+      collapsed
     }
-  },
-  methods: {
   }
 }
 </script>
@@ -92,7 +91,6 @@ export default {
   }
 
   .side-menu-main-layout-container {
-    color: #fff;
     height: 100vh;
 
     .trigger {
@@ -167,7 +165,7 @@ export default {
         height: 100%;
         padding: 0 16px;
         background: #fff;
-        box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+        // box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
         .header-part1 {
           display: flex;

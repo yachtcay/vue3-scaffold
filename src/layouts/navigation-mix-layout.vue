@@ -30,8 +30,7 @@
         </div>
       </a-layout-sider>
       <a-layout>
-        <a-layout-content>Content</a-layout-content>
-        <a-layout-footer>Footer</a-layout-footer>
+        <main-content />
       </a-layout>
     </a-layout>
   </a-layout>
@@ -42,6 +41,7 @@ import { ref } from 'vue'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import NavigationMenu from './components/TheNavigationMenu'
 import HeaderControl from './components/TheHeaderControl.vue'
+import MainContent from './components/TheMainContent.vue'
 
 export default {
   name: 'NavigationMixLayout',
@@ -49,7 +49,8 @@ export default {
     NavigationMenu,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
-    HeaderControl
+    HeaderControl,
+    MainContent
   },
   setup() {
     const collapsed = ref(false)
@@ -62,27 +63,27 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  :deep(.ant-layout-sider-children ::-webkit-scrollbar) {
+  :deep(.ant-layout-sider-children) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  :deep(::-webkit-scrollbar) {
     width: 6px;
     height: 6px;
   }
 
-  :deep(.ant-layout-sider-children ::-webkit-scrollbar-thumb) {
+  :deep(::-webkit-scrollbar-thumb) {
     background: rgba(0,0,0,.12);
     border-radius: 3px;
     box-shadow: inset 0 0 5px rgb(0 21 41 / 5%);
   }
 
-  :deep(.ant-layout-sider-children ::-webkit-scrollbar-track) {
+  :deep(::-webkit-scrollbar-track) {
     background: rgba(0,0,0,.06);
     border-radius: 3px;
     box-shadow: inset 0 0 5px rgba(0, 21, 41, 0.05);
-  }
-
-  :deep(.ant-layout-sider-children) {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
   }
 
   .mix-layout-container {
