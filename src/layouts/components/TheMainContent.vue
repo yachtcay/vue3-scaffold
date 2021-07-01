@@ -1,7 +1,7 @@
 <template>
   <div class="content-container">
     <div class="tab-wrapper">
-      <a-tabs size="small" :tabBarStyle="{ 'padding-left': '16px' }" v-model:activeKey="activeKey" type="card" >
+      <a-tabs size="small" :tabBarStyle="{ 'padding-left': '16px' }" type="card" >
         <a-tab-pane class="tab-pane" v-for="pane in [ { key: 1, title: 'title1', content: 'content1' }, { key: 2, title: 'title2', content: 'content2' } ]" :key="pane.key" :closable="true">
           <template #tab>
             <a-dropdown :trigger="['contextmenu']">
