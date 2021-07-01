@@ -5,10 +5,10 @@
 布局参考 Ant Design Pro
 
 ## 布局
-- [ ] 可选 Side Menu Layout
-- [ ] 可选 Top Menu Layout
-- [ ] 可选 Mix Menu Layout
-- [ ] 可配置 Tabs (所有页面 Tab 带刷新功能，除了 Home 页面，其他页面可以关闭) 支持单击右键菜单实现关闭其他，关闭到左侧，关闭到右侧，刷新当前页
+- [x] 可选 Side Menu Layout
+- [x] 可选 Top Menu Layout
+- [x] 可选 Mix Menu Layout
+- [x] 可配置导航 Tabs (所有页面 Tab 带刷新功能。除固定页面外，其他页面可以关闭) 支持单击右键菜单实现，“关闭其他”，“关闭到左侧”，“关闭到右侧”，“刷新当前页”
 - [x] 自定义一套深蓝色主题
 
 ## 组件
