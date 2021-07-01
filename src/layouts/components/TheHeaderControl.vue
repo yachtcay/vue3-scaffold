@@ -71,6 +71,7 @@
   <a-dropdown>
     <span class="username-wrapper">
       <a class="ant-dropdown-link" @click.prevent>
+        <UserOutlined />
         {{ userInfo && userInfo.username }}
         <DownOutlined />
       </a>
@@ -95,7 +96,8 @@ import {
   NotificationTwoTone,
   MessageTwoTone,
   DownOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  UserOutlined
 } from '@ant-design/icons-vue'
 
 export default {
@@ -105,7 +107,8 @@ export default {
     NotificationTwoTone,
     MessageTwoTone,
     DownOutlined,
-    LogoutOutlined
+    LogoutOutlined,
+    UserOutlined
   },
   setup() {
     const store = useStore()
