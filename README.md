@@ -25,7 +25,7 @@
 {
   code: 20000,  // 自定义的业务码
   data: [],     // 响应的数据，可以是 Array Object String Number Boolean
-  message: '',  // 响应数据的提示信息
+  message: null,  // 响应数据的提示信息
   success: true // 当前业务请求是否成功
 }
 ```
