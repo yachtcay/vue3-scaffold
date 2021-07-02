@@ -82,7 +82,7 @@ export default {
         mode="inline"
         v-models={[[selectedMenuKeys.value, 'selectedKeys'], [openMenuKeys.value, 'openKeys']]}
       >
-        <Menu ref={menuRef} menu={ navigationMenu.value } navigationMenuMapper={ navigationMenuMapper } />
+        <Menu ref={ menuRef } menu={ navigationMenu.value } navigationMenuMapper={ navigationMenuMapper } />
       </a-menu>
     )
   }
