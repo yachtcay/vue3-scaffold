@@ -57,8 +57,12 @@ export default {
     ReloadOutlined
   },
   setup() {
-    const tabList = ref([
-      { key: 1, title: 'title1', content: 'content1', spin: false }, { key: 2, title: 'title2', content: 'content2' }
+    const tabList = ref([{
+      key: 1,
+      title: 'title1',
+      content: 'content1',
+      spin: false
+    }, { key: 2, title: 'title2', content: 'content2' }
     ])
     const tabActiveKey = ref(1)
 
