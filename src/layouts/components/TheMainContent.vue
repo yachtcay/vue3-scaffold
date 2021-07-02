@@ -1,13 +1,13 @@
 <template>
   <div class="content-container">
     <div class="tab-wrapper">
-      <a-tabs size="small" :tabBarStyle="{ 'padding-left': '16px' }" type="card" >
-        <a-tab-pane class="tab-pane" v-for="pane in [ { key: 1, title: 'title1', content: 'content1' }, { key: 2, title: 'title2', content: 'content2' } ]" :key="pane.key" :closable="true">
+      <a-tabs v-model:activeKey="tabActiveKey" size="small" :tabBarStyle="{ 'padding-left': '16px' }" type="card" >
+        <a-tab-pane class="tab-pane" v-for="pane in tabList" :key="pane.key" :closable="true">
           <template #tab>
             <a-dropdown :trigger="['contextmenu']">
-              <span>
+              <span style="user-select: none;">
                 {{ pane.title }}
-                <ReloadOutlined class="dropdown-menu-refresh-btn" />
+                <ReloadOutlined v-show="tabActiveKey === pane.key" :spin="pane.spin" class="dropdown-menu-refresh-btn" @click="handleReload(pane)" />
                 <CloseOutlined class="dropdown-menu-close-btn" />
               </span>
 
@@ -46,17 +46,11 @@
     </div>
     <div class="content-wrapper">
       <a-layout-content>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
-        <div style="padding: 30px">Content</div>
+        <router-view v-slot="{ Component, route }">
+          <keep-alive>
+            <component :is="Component" :key="route.path" />
+          </keep-alive>
+        </router-view>
       </a-layout-content>
       <!-- <a-layout-footer></a-layout-footer> -->
     </div>
@@ -64,6 +58,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 
 export default {
@@ -72,6 +67,26 @@ export default {
     MoreOutlined,
     CloseOutlined,
     ReloadOutlined
+  },
+  setup() {
+    const tabList = ref([
+      { key: 1, title: 'title1', content: 'content1', spin: false }, { key: 2, title: 'title2', content: 'content2' }
+    ])
+    const tabActiveKey = ref(1)
+
+    return {
+      tabList,
+      tabActiveKey
+    }
+  },
+  methods: {
+    handleReload(pane) {
+      console.log(pane)
+      pane.spin = true
+      window.setTimeout(() => {
+        pane.spin = false
+      }, 1000)
+    }
   }
 }
 </script>
