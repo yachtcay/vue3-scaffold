@@ -1,6 +1,6 @@
 <template>
   <div class="content-container">
-    <div class="tab-wrapper">
+    <!-- <div class="tab-wrapper">
       <a-tabs v-model:activeKey="tabActiveKey" size="small" :tabBarStyle="{ 'padding-left': '16px' }" type="card" >
         <a-tab-pane class="tab-pane" v-for="pane in tabList" :key="pane.key" :closable="true">
           <template #tab>
@@ -43,7 +43,7 @@
           <a-breadcrumb-item>An Application</a-breadcrumb-item>
         </a-breadcrumb>
       </div>
-    </div>
+    </div> -->
     <div class="content-wrapper">
       <a-layout-content>
         <router-view v-slot="{ Component, route }">
