@@ -49,7 +49,7 @@ const home = [
         path: 'home',
         name: 'Home',
         meta: {
-          title: '首页'
+          fixed: true
         },
         component: () => import('@/views/home')
       }
@@ -67,7 +67,6 @@ const example = [
     path: '/example',
     name: 'Example',
     meta: {
-      title: '示例'
     },
     component: AppLayout,
     redirect: {
@@ -78,7 +77,6 @@ const example = [
         path: 'example1',
         name: 'Example1',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       },
@@ -86,7 +84,6 @@ const example = [
         path: 'example2',
         name: 'Example2',
         meta: {
-          title: '示例2'
         },
         component: () => import('@/views/business/example/example2')
       },
@@ -94,7 +91,6 @@ const example = [
         path: 'example3',
         name: 'Example3',
         meta: {
-          title: '示例3'
         },
         component: () => import('@/views/business/example/example3')
       },
@@ -102,8 +98,6 @@ const example = [
         path: 'example4',
         name: 'Example4',
         meta: {
-          title: '示例4 - layout',
-          layout: true
         },
         component: () => import('@/views/business/example/example4/layout'),
         redirect: {
@@ -114,7 +108,6 @@ const example = [
             path: 'list',
             name: 'Example4List',
             meta: {
-              title: '示例4 - List'
             },
             component: () => import('@/views/business/example/example4/list.vue')
           },
@@ -122,7 +115,6 @@ const example = [
             path: 'detail',
             name: 'Example4Detail',
             meta: {
-              title: '示例4 - Detail'
             },
             component: () => import('@/views/business/example/example4/detail.vue')
           }
@@ -132,7 +124,6 @@ const example = [
         path: 'example5',
         name: 'Example5',
         meta: {
-          title: '示例51'
         },
         component: () => import('@/views/business/example/example1.vue')
       }
@@ -146,7 +137,6 @@ const business = [
     path: '/business',
     name: 'Business',
     meta: {
-      title: '示例'
     },
     component: AppLayout,
     redirect: {
@@ -157,7 +147,6 @@ const business = [
         path: 'business1',
         name: 'Business1',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       },
@@ -165,7 +154,6 @@ const business = [
         path: 'business2',
         name: 'Business2',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       },
@@ -173,7 +161,6 @@ const business = [
         path: 'business3',
         name: 'Business3',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       }
@@ -186,7 +173,6 @@ const business1 = [
     path: '/business1',
     name: 'Business1',
     meta: {
-      title: '示例'
     },
     component: AppLayout,
     redirect: {
@@ -197,7 +183,6 @@ const business1 = [
         path: 'business11',
         name: 'Business11',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       }
@@ -210,7 +195,6 @@ const business2 = [
     path: '/business2',
     name: 'Business2',
     meta: {
-      title: '示例'
     },
     component: AppLayout,
     redirect: {
@@ -221,7 +205,6 @@ const business2 = [
         path: 'business21',
         name: 'Business21',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       }
@@ -234,7 +217,6 @@ const business3 = [
     path: '/business3',
     name: 'Business3',
     meta: {
-      title: '示例'
     },
     component: AppLayout,
     redirect: {
@@ -245,7 +227,6 @@ const business3 = [
         path: 'business31',
         name: 'Business31',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       }
@@ -258,7 +239,6 @@ const business4 = [
     path: '/business4',
     name: 'Business4',
     meta: {
-      title: '示例'
     },
     component: AppLayout,
     redirect: {
@@ -269,7 +249,6 @@ const business4 = [
         path: 'business41',
         name: 'Business41',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       }
@@ -282,7 +261,6 @@ const business5 = [
     path: '/business5',
     name: 'Business5',
     meta: {
-      title: '示例'
     },
     component: AppLayout,
     redirect: {
@@ -293,7 +271,6 @@ const business5 = [
         path: 'business51',
         name: 'Business51',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       }
@@ -306,7 +283,6 @@ const business6 = [
     path: '/business6',
     name: 'Business6',
     meta: {
-      title: '示例'
     },
     component: AppLayout,
     redirect: {
@@ -317,7 +293,6 @@ const business6 = [
         path: 'business61',
         name: 'Business61',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       }
@@ -330,7 +305,6 @@ const business7 = [
     path: '/business7',
     name: 'Business7',
     meta: {
-      title: '示例'
     },
     component: AppLayout,
     redirect: {
@@ -341,7 +315,6 @@ const business7 = [
         path: 'business71',
         name: 'Business71',
         meta: {
-          title: '示例1'
         },
         component: () => import('@/views/business/example/example1')
       }
