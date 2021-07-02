@@ -10,6 +10,7 @@ module.exports = [
           title: '首页',
           uniqueTag: 'Home',
           type: 'menu',
+          fixed: true,
           children: []
         },
         {
@@ -17,12 +18,14 @@ module.exports = [
           title: 'Example',
           uniqueTag: 'Example',
           type: 'catalog',
+          fixed: false,
           children: [
             {
               routeName: 'Example1',
               title: 'Example1',
               uniqueTag: 'Example1',
               type: 'menu',
+              fixed: false,
               children: []
             },
             {
@@ -30,6 +33,7 @@ module.exports = [
               title: 'Example2',
               uniqueTag: 'Example2',
               type: 'menu',
+              fixed: false,
               children: []
             },
             {
@@ -37,6 +41,7 @@ module.exports = [
               title: 'Example3',
               uniqueTag: 'Example3',
               type: 'menu',
+              fixed: false,
               children: []
             },
             {
@@ -44,17 +49,20 @@ module.exports = [
               title: 'Example4',
               uniqueTag: 'Example4',
               type: 'menu',
+              fixed: false,
               children: [
                 {
                   routeName: 'Example4List',
                   title: 'Example4List',
                   type: 'menu',
+                  fixed: false,
                   children: []
                 },
                 {
                   routeName: 'Example4Detail',
                   title: 'Example4Detail',
                   type: 'menu',
+                  fixed: false,
                   children: []
                 }
               ]
@@ -64,12 +72,14 @@ module.exports = [
               title: 'Example5',
               uniqueTag: 'Example5Group',
               type: 'group',
+              fixed: false,
               children: [
                 {
                   routeName: 'Example5',
                   title: 'Example5',
                   uniqueTag: 'Example5',
                   type: 'menu',
+                  fixed: false,
                   children: []
                 }
               ]
@@ -81,18 +91,21 @@ module.exports = [
           title: 'Business',
           uniqueTag: 'Business',
           type: 'catalog',
+          fixed: false,
           children: [
             {
               routeName: 'Business1Catalog',
               title: 'Business1-catalog',
               uniqueTag: 'Business1',
               type: 'catalog',
+              fixed: false,
               children: [
                 {
                   routeName: 'Business1',
                   title: 'Business1-menu',
                   uniqueTag: 'Business1Menu',
                   type: 'menu',
+                  fixed: false,
                   children: []
                 }
               ]
@@ -104,12 +117,14 @@ module.exports = [
           title: 'Business1',
           uniqueTag: 'Business1',
           type: 'catalog',
+          fixed: false,
           children: [
             {
               routeName: 'Business11',
               title: 'Business11',
               uniqueTag: 'Business11',
               type: 'menu',
+              fixed: false,
               children: []
             }
           ]
@@ -119,12 +134,14 @@ module.exports = [
           title: 'Business2',
           uniqueTag: 'Business2',
           type: 'catalog',
+          fixed: false,
           children: [
             {
               routeName: 'Business21',
               title: 'Business11',
               uniqueTag: 'Business21',
               type: 'menu',
+              fixed: false,
               children: []
             }
           ]
@@ -134,12 +151,14 @@ module.exports = [
           title: '业务代码',
           uniqueTag: 'Business3',
           type: 'catalog',
+          fixed: false,
           children: [
             {
               routeName: 'Business31',
               title: 'Business31',
               uniqueTag: 'Business31',
               type: 'menu',
+              fixed: false,
               children: []
             }
           ]
@@ -149,12 +168,14 @@ module.exports = [
           title: 'Business4',
           uniqueTag: 'Business4',
           type: 'catalog',
+          fixed: false,
           children: [
             {
               routeName: 'Business41',
               title: 'Business41',
               uniqueTag: 'Business41',
               type: 'menu',
+              fixed: false,
               children: []
             }
           ]
@@ -164,6 +185,7 @@ module.exports = [
           title: 'Business5',
           uniqueTag: 'Business5',
           type: 'catalog',
+          fixed: false,
           children: [
             {
               routeName: 'Business51',
@@ -179,6 +201,7 @@ module.exports = [
           title: 'Business6',
           uniqueTag: 'Business6',
           type: 'catalog',
+          fixed: false,
           children: [
             {
               routeName: 'Business61',
@@ -194,6 +217,7 @@ module.exports = [
           title: 'Business7',
           uniqueTag: 'Business7',
           type: 'catalog',
+          fixed: false,
           children: [
             {
               routeName: 'Business71',
