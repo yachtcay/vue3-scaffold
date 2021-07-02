@@ -1,5 +1,5 @@
 # vue3-scaffold
-按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架，不接受 PR，不定期更新，主要用于交流学习
+按照个人喜好搭建的一套基于 Vue3 和 AntdV 的前端脚手架，不接受 PR，不定期更新，主要用于交流学习，只关注 Chrome 浏览器正常
 
 # TODO
 布局参考 [Ant Design Pro](https://store.antdv.com/pro/preview/workplace)
