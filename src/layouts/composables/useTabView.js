@@ -12,7 +12,7 @@ function makeTabRouteMenu(routeMatched = [], navigationOnlyMenuFlat = []) {
         title: findMenu.title,
         routeName: current.name,
         spin: false,
-        ...current.meta
+        fixed: findMenu.fixed
       }
     }
   }
@@ -29,6 +29,7 @@ export default function useTabView() {
     const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
     const routeMenu = makeTabRouteMenu(routeMatched, navigationOnlyMenuFlat)
     if (routeMenu) {
+      store.dispatch('tab-views/init')
       store.dispatch('tab-views/add', routeMenu)
       store.dispatch('tab-views/active', routeMenu.routeName)
     }

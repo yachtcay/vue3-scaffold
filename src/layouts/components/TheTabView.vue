@@ -7,7 +7,7 @@
             <span style="user-select: none;">
               {{ pane.title }}
               <ReloadOutlined v-show="tabActiveKey === pane.routeName" :spin="pane.spin" class="dropdown-menu-refresh-btn" @click="handleReload(pane)" />
-              <CloseOutlined class="dropdown-menu-close-btn" />
+              <CloseOutlined v-show="!pane.fixed" class="dropdown-menu-close-btn" />
             </span>
 
             <template #overlay>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import useTabView from '../composables/useTabView'
@@ -60,14 +60,6 @@ export default {
   },
   setup() {
     const store = useStore()
-    // const tabList = ref([{
-    //   key: 1,
-    //   title: 'title1',
-    //   spin: false
-    // }, { key: 2, title: 'title2' }
-    // ])
-    // const tabActiveKey = ref(1)
-
     useTabView()
 
     return {
