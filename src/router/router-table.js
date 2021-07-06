@@ -49,6 +49,7 @@ const home = [
         path: 'home',
         name: 'Home',
         meta: {
+          fixed: true
         },
         component: () => import('@/views/home')
       }
