@@ -46,8 +46,27 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
+
+function makeTabRouteMenu(routeMatched = [], navigationOnlyMenuFlat = []) {
+  let routeMenu = null
+  for (let i = routeMatched.length - 1; i >= 0; i--) {
+    const current = routeMatched[i]
+    const findMenu = navigationOnlyMenuFlat.find((menu) => menu.routeName === current.name)
+    if (findMenu) {
+      routeMenu = {
+        title: findMenu.title,
+        routeName: current.name,
+        ...current.meta
+      }
+    }
+  }
+
+  return routeMenu
+}
 
 export default {
   name: 'TheTabView',
@@ -57,6 +76,8 @@ export default {
     ReloadOutlined
   },
   setup() {
+    const route = useRoute()
+    const store = useStore()
     const tabList = ref([{
       key: 1,
       title: 'title1',
@@ -65,6 +86,25 @@ export default {
     }, { key: 2, title: 'title2', content: 'content2' }
     ])
     const tabActiveKey = ref(1)
+
+    onMounted(() => {
+      const routeMatched = route.matched
+      const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
+      const routeMenu = makeTabRouteMenu(routeMatched, navigationOnlyMenuFlat)
+      if (routeMenu) {
+        store.dispatch('tab-views/add', routeMenu)
+      }
+    })
+
+    // ...TODO
+    watch(route, (viewRoute) => {
+      const routeMatched = viewRoute.matched
+      const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
+      const routeMenu = makeTabRouteMenu(routeMatched, navigationOnlyMenuFlat)
+      if (routeMenu) {
+        store.dispatch('tab-views/add', routeMenu)
+      }
+    })
 
     return {
       tabList,
