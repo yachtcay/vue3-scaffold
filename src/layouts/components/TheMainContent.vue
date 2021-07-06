@@ -3,9 +3,9 @@
     <tab-View />
     <div class="content-wrapper">
       <a-layout-content>
-        <router-view v-slot="{ Component, route }">
-          <keep-alive>
-            <component :is="Component" :key="route.path" />
+        <router-view v-slot="{ Component, route }" :key="$route.path">
+          <keep-alive :include="cacheTabView">
+            <component :is="Component" :key="route.meta.usePathKey ? route.path : undefined" />
           </keep-alive>
         </router-view>
       </a-layout-content>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import TabView from './TheTabView.vue'
 
@@ -25,6 +27,12 @@ export default {
     CloseOutlined,
     ReloadOutlined,
     TabView
+  },
+  setup() {
+    const store = useStore()
+    return {
+      cacheTabView: computed(() => store.state['tab-views'].cacheViewsKey)
+    }
   }
 }
 </script>

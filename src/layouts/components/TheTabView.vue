@@ -68,18 +68,42 @@ export default {
     }
   },
   methods: {
-    handleReload(pane) {
-      console.log(pane)
-      // pane.spin = true
-      // window.setTimeout(() => {
-      //   pane.spin = false
-      // }, 1000)
+    refresh() {
+      this.$router.replace({
+        path: `/redirect${this.$route.fullPath}`,
+        test: 123
+      })
     },
+
+    handleReload(pane) {
+      this.refresh()
+      pane.spin = true
+      window.setTimeout(() => {
+        pane.spin = false
+      }, 1000)
+    },
+
+    handleRefreshCurrent() {
+      this.refresh()
+    },
+
     handleChangeTab(activeRouteName) {
       this.$store.dispatch('tab-views/active', activeRouteName)
       this.$router.push({
         name: activeRouteName
       })
+    },
+
+    handleCloseCurrent() {
+    },
+
+    handleCloseOther() {
+    },
+
+    handleCloseAllToTheLeft() {
+    },
+
+    handleCloseAllToTheRight() {
     }
   }
 }
