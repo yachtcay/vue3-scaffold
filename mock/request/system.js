@@ -10,6 +10,7 @@ module.exports = [
           title: '首页',
           uniqueTag: 'Home',
           type: 'menu',
+          fixed: true,
           children: []
         },
         {
