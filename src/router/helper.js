@@ -41,14 +41,16 @@ function getMenuFlat(menu, includeType = [], filterFn = () => true) {
         menusFlat.push({
           routeName: currentMenu.routeName,
           title: currentMenu.title,
-          type: currentMenu.type
+          type: currentMenu.type,
+          fixed: currentMenu.fixed
         })
       }
     } else {
       menusFlat.push({
         routeName: currentMenu.routeName,
         title: currentMenu.title,
-        type: currentMenu.type
+        type: currentMenu.type,
+        fixed: currentMenu.fixed || false
       })
     }
 
