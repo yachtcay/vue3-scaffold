@@ -26,6 +26,23 @@ const base = [
     }
   },
   {
+    path: '/redirect',
+    name: 'Redirect',
+    component: AppLayout,
+    meta: {
+      requiresAuth: false
+    },
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/features/redirect'),
+        meta: {
+          requiresAuth: false
+        }
+      }
+    ]
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: {
       name: 'NotFound'

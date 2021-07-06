@@ -7,7 +7,7 @@ NProgress.configure({ showSpinner: false })
 
 // 获取到用户信息以后，进行授权判断
 function hasAuthRoute(to) {
-  if (to.name === 'Home' || to.name === 'NotFound') {
+  if (to.name === 'Home' || to.name === 'NotFound' || to.meta.requiresAuth === false) {
     return true
   }
 
