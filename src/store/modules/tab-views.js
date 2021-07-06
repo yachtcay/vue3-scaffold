@@ -1,6 +1,7 @@
 const state = () => ({
   cacheViews: [],
-  cacheViewsKey: []
+  cacheViewsKey: [],
+  activeViewKey: ''
 })
 
 const getters = {
@@ -11,6 +12,7 @@ const mutations = {
     if (state.cacheViewsKey.indexOf(viewRoute.routeName) === -1) {
       state.cacheViews.push(viewRoute)
       state.cacheViewsKey.push(viewRoute.routeName)
+      state.activeViewKey = viewRoute.routeName
     }
   },
 
@@ -20,6 +22,10 @@ const mutations = {
       state.cacheViews.splice(findViewKeyIndex, 1)
       state.cacheViewsKey.splice(findViewKeyIndex, 1)
     }
+  },
+
+  ACTIVE_VIEW: (state, routeName) => {
+    state.activeViewKey = routeName
   }
 }
 
@@ -30,6 +36,10 @@ const actions = {
 
   del({ commit }, routeName) {
     commit('DELETE_VIEW', routeName)
+  },
+
+  active({ commit }, routeName) {
+    commit('ACTIVE_VIEW', routeName)
   }
 }
 

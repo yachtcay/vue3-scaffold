@@ -1,12 +1,12 @@
 <template>
   <div class="tab-wrapper">
-    <a-tabs v-model:activeKey="tabActiveKey" size="small" :tabBarStyle="{ 'padding-left': '16px' }" type="card" >
-      <a-tab-pane class="tab-pane" v-for="pane in tabList" :key="pane.key" :closable="true">
+    <a-tabs :activeKey="tabActiveKey" size="small" :tabBarStyle="{ 'padding-left': '16px' }" type="card" @change="handleChangeTab">
+      <a-tab-pane class="tab-pane" v-for="pane in tabList" :key="pane.routeName" :closable="true">
         <template #tab>
           <a-dropdown :trigger="['contextmenu']">
             <span style="user-select: none;">
               {{ pane.title }}
-              <ReloadOutlined v-show="tabActiveKey === pane.key" :spin="pane.spin" class="dropdown-menu-refresh-btn" @click="handleReload(pane)" />
+              <ReloadOutlined v-show="tabActiveKey === pane.routeName" :spin="pane.spin" class="dropdown-menu-refresh-btn" @click="handleReload(pane)" />
               <CloseOutlined class="dropdown-menu-close-btn" />
             </span>
 
@@ -46,27 +46,10 @@
 </template>
 
 <script>
-import { ref, onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
-
-function makeTabRouteMenu(routeMatched = [], navigationOnlyMenuFlat = []) {
-  let routeMenu = null
-  for (let i = routeMatched.length - 1; i >= 0; i--) {
-    const current = routeMatched[i]
-    const findMenu = navigationOnlyMenuFlat.find((menu) => menu.routeName === current.name)
-    if (findMenu) {
-      routeMenu = {
-        title: findMenu.title,
-        routeName: current.name,
-        ...current.meta
-      }
-    }
-  }
-
-  return routeMenu
-}
+import useTabView from '../composables/useTabView'
 
 export default {
   name: 'TheTabView',
@@ -76,48 +59,35 @@ export default {
     ReloadOutlined
   },
   setup() {
-    const route = useRoute()
     const store = useStore()
-    const tabList = ref([{
-      key: 1,
-      title: 'title1',
-      content: 'content1',
-      spin: false
-    }, { key: 2, title: 'title2', content: 'content2' }
-    ])
-    const tabActiveKey = ref(1)
+    // const tabList = ref([{
+    //   key: 1,
+    //   title: 'title1',
+    //   spin: false
+    // }, { key: 2, title: 'title2' }
+    // ])
+    // const tabActiveKey = ref(1)
 
-    onMounted(() => {
-      const routeMatched = route.matched
-      const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
-      const routeMenu = makeTabRouteMenu(routeMatched, navigationOnlyMenuFlat)
-      if (routeMenu) {
-        store.dispatch('tab-views/add', routeMenu)
-      }
-    })
-
-    // ...TODO
-    watch(route, (viewRoute) => {
-      const routeMatched = viewRoute.matched
-      const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
-      const routeMenu = makeTabRouteMenu(routeMatched, navigationOnlyMenuFlat)
-      if (routeMenu) {
-        store.dispatch('tab-views/add', routeMenu)
-      }
-    })
+    useTabView()
 
     return {
-      tabList,
-      tabActiveKey
+      tabList: computed(() => store.state['tab-views'].cacheViews),
+      tabActiveKey: computed(() => store.state['tab-views'].activeViewKey)
     }
   },
   methods: {
     handleReload(pane) {
       console.log(pane)
-      pane.spin = true
-      window.setTimeout(() => {
-        pane.spin = false
-      }, 1000)
+      // pane.spin = true
+      // window.setTimeout(() => {
+      //   pane.spin = false
+      // }, 1000)
+    },
+    handleChangeTab(activeRouteName) {
+      this.$store.dispatch('tab-views/active', activeRouteName)
+      this.$router.push({
+        name: activeRouteName
+      })
     }
   }
 }

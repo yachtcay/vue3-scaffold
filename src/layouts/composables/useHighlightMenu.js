@@ -1,5 +1,7 @@
 import {
-  ref
+  ref,
+  watch,
+  onMounted
 } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
@@ -32,8 +34,16 @@ export default function useHighlightMenu() {
   const store = useStore()
   const selectedMenuKeys = ref([])
   const navigationOnlyMenuFlat = store.getters['system/navigationOnlyMenuFlat']
-  const currentMenuKeys = findCurrentMenuKeys(route.matched, navigationOnlyMenuFlat)
-  selectedMenuKeys.value = currentMenuKeys
+
+  onMounted(() => {
+    const currentMenuKeys = findCurrentMenuKeys(route.matched, navigationOnlyMenuFlat)
+    selectedMenuKeys.value = currentMenuKeys
+  })
+
+  watch(route, (viewRoute) => {
+    const currentMenuKeys = findCurrentMenuKeys(viewRoute.matched, navigationOnlyMenuFlat)
+    selectedMenuKeys.value = currentMenuKeys
+  })
 
   return {
     selectedMenuKeys
