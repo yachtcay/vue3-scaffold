@@ -70,8 +70,7 @@ export default {
   methods: {
     refresh() {
       this.$router.replace({
-        path: `/redirect${this.$route.fullPath}`,
-        test: 123
+        path: `/redirect${this.$route.fullPath}`
       })
     },
 
