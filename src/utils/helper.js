@@ -78,7 +78,7 @@ export const pickPropertyOfTree = (tree = [], pickPropertyName, uniqueProperty =
 }
 
 /**
- * 在指定的数机构数据中，获取指定节点所经历过的节点集合
+ * 在指定的树机构数据中，获取指定节点所经历过的节点集合
  * @param {Array} tree 要进行树结构的数据
  * @param {String} findNodeNameProperty 要查找节点的属性名称
  * @param {String} findNodeName 要查找节点属性的值
