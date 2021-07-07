@@ -36,10 +36,7 @@
     </a-tabs>
     <div class="breadcrumb-wrapper" style="padding: 0 24px 16px 24px; ">
       <a-breadcrumb>
-        <a-breadcrumb-item>Home</a-breadcrumb-item>
-        <a-breadcrumb-item>Application Center</a-breadcrumb-item>
-        <a-breadcrumb-item>Application List</a-breadcrumb-item>
-        <a-breadcrumb-item>An Application</a-breadcrumb-item>
+        <a-breadcrumb-item v-for="breadcrumb in breadcrumbList" :key="breadcrumb.routeName">{{ breadcrumb.title }}</a-breadcrumb-item>
       </a-breadcrumb>
     </div>
   </div>
@@ -50,6 +47,7 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { MoreOutlined, CloseOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import useTabView from '../composables/useTabView'
+import useBreadcrumb from '../composables/useBreadcrumb'
 
 export default {
   name: 'TheTabView',
@@ -61,10 +59,12 @@ export default {
   setup() {
     const store = useStore()
     useTabView()
+    const { breadcrumbList } = useBreadcrumb()
 
     return {
       tabList: computed(() => store.state['tab-views'].cacheViews),
-      tabActiveKey: computed(() => store.state['tab-views'].activeViewKey)
+      tabActiveKey: computed(() => store.state['tab-views'].activeViewKey),
+      breadcrumbList
     }
   },
   methods: {
