@@ -1,31 +1,39 @@
 const state = () => ({
   cacheViews: [],
-  cacheViewsKey: [],
+  cacheViewsKeys: [],
   activeViewKey: ''
 })
 
 const getters = {
+  currentActiveViewKey(state) {
+    return state.activeViewKey
+  },
+
+  getLastCacheViewKey(state) {
+    return state.cacheViewsKeys[state.cacheViewsKeys.length - 1]
+  }
 }
 
 const mutations = {
   ADD_VIEW: (state, viewRoute) => {
-    if (state.cacheViewsKey.indexOf(viewRoute.routeName) === -1) {
+    if (state.cacheViewsKeys.indexOf(viewRoute.routeName) === -1) {
       state.cacheViews.push(viewRoute)
-      state.cacheViewsKey.push(viewRoute.routeName)
+      state.cacheViewsKeys.push(viewRoute.routeName)
       state.activeViewKey = viewRoute.routeName
     }
   },
 
-  DELETE_VIEW: (state, routeName) => {
-    const findViewKeyIndex = state.cacheViewsKey.indexOf(routeName)
-    if (findViewKeyIndex !== -1) {
-      state.cacheViews.splice(findViewKeyIndex, 1)
-      state.cacheViewsKey.splice(findViewKeyIndex, 1)
-    }
+  DELETE_VIEW: (state, deleteIndex) => {
+    state.cacheViews = state.cacheViews.filter((val, index) => index !== deleteIndex)
+    state.cacheViewsKeys = state.cacheViewsKeys.filter((val, index) => index !== deleteIndex)
   },
 
   ACTIVE_VIEW: (state, routeName) => {
-    state.activeViewKey = routeName
+    if (routeName) {
+      state.activeViewKey = routeName
+    } else if (state.cacheViewsKeys.length > 0) {
+      state.activeViewKey = [...state.cacheViewsKeys][state.cacheViewsKeys.length - 1]
+    }
   }
 }
 
@@ -61,6 +69,13 @@ const actions = {
 
   active({ commit }, routeName) {
     commit('ACTIVE_VIEW', routeName)
+  },
+
+  closeCurrentTabView({ commit, state }, routeName) {
+    const findViewKeyIndex = state.cacheViewsKeys.indexOf(routeName)
+    if (findViewKeyIndex !== -1) {
+      commit('DELETE_VIEW', findViewKeyIndex)
+    }
   }
 }
 

@@ -6,8 +6,8 @@
           <a-dropdown :trigger="['contextmenu']">
             <span style="user-select: none;">
               {{ pane.title }}
-              <ReloadOutlined v-show="tabActiveKey === pane.routeName" :spin="pane.spin" class="dropdown-menu-refresh-btn" @click="handleReload(pane)" />
-              <CloseOutlined v-show="!pane.fixed" class="dropdown-menu-close-btn" />
+              <ReloadOutlined v-show="tabActiveKey === pane.routeName" :spin="pane.spin" class="dropdown-menu-refresh-btn" @click.stop="handleReload(pane)" />
+              <CloseOutlined v-show="!pane.fixed" class="dropdown-menu-close-btn" @click.stop="handleCloseCurrent(pane)" />
             </span>
 
             <template #overlay>
@@ -93,7 +93,12 @@ export default {
       })
     },
 
-    handleCloseCurrent() {
+    handleCloseCurrent(pane) {
+      this.$store.dispatch('tab-views/closeCurrentTabView', pane.routeName)
+      const lastCacheViewKey = this.$store.getters['tab-views/getLastCacheViewKey']
+      this.$router.push({
+        name: lastCacheViewKey
+      })
     },
 
     handleCloseOther() {

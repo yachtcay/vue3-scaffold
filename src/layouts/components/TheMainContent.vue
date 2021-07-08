@@ -31,7 +31,7 @@ export default {
   setup() {
     const store = useStore()
     return {
-      cacheTabView: computed(() => store.state['tab-views'].cacheViewsKey)
+      cacheTabView: computed(() => store.state['tab-views'].cacheViewsKeys)
     }
   }
 }
